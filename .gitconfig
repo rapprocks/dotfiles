@@ -1,0 +1,4 @@
+# This is Git's per-user configuration file.
+[user]
+    name = Philip Rapp
+    email = rapprocks@users.noreply.github.com
