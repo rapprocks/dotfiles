@@ -38,6 +38,9 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
+#Finder: Enable cmd+q functionality to Finder
+defaults write com.apple.finder "QuitMenuItem" -bool "true" && killall Finder
+
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
@@ -55,6 +58,8 @@ defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
 defaults write com.apple.dock static-only -bool true
+
+defaults write com.apple.dock "show-recents" -bool "true" && killall Dock
 
 ###############################################################################
 # Safari & WebKit                                                             #
