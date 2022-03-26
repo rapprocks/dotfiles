@@ -9,3 +9,5 @@ ZSH_THEME="agnoster"
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+eval "$(starship init zsh)"
