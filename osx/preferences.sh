@@ -38,9 +38,6 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-#Finder: Enable cmd+q functionality to Finder
-defaults write com.apple.finder "QuitMenuItem" -bool "true" && killall Finder
-
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
