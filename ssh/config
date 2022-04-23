@@ -1,0 +1,19 @@
+Host 192.168.2.213
+  HostName pihole.home.lan
+  User hieronymus
+  IdentityFile ~/.ssh/
+
+Host nas.home.lan
+  HostName nas.home.lan
+  User hieronymus
+  IdentityFile ~/.ssh/nas
+
+Host home.dock.lan
+  HostName home.dock.lan
+  User hieronymus
+  IdentityFile ~/.ssh/dockertown
+
+Host rah.yeet.nu
+  HostName rah.yeet.nu
+  User hieronymus
+  IdentityFile ~/.ssh/hetzner
