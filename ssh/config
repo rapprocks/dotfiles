@@ -11,9 +11,14 @@ Host nas.home.lan
 Host home.dock.lan
   HostName home.dock.lan
   User hieronymus
-  IdentityFile ~/.ssh/dockertown
+  IdentityFile ~/.ssh/dockertown_test
 
 Host rah.yeet.nu
   HostName rah.yeet.nu
   User hieronymus
   IdentityFile ~/.ssh/hetzner
+
+Host rapp.rocks
+  HostName 192.156.2.1
+  User kdot
+  IdentityFile ~/.ssh/rapp.rocks
