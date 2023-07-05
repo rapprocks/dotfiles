@@ -1,24 +1,34 @@
-Host 192.168.2.213
-  HostName pihole.home.lan
-  User hieronymus
-  IdentityFile ~/.ssh/
+Host hetz.vpn
+  HostName 78.47.252.51
+  User philip
+  IdentityFile ~/.ssh/hetzvpn
 
-Host nas.home.lan
-  HostName nas.home.lan
-  User hieronymus
-  IdentityFile ~/.ssh/nas
+Host labrocks
+    HostName 95.217.235.176
+    User root
+    IdentityFile ~/.ssh/labrocks
 
-Host home.dock.lan
-  HostName home.dock.lan
-  User hieronymus
-  IdentityFile ~/.ssh/dockertown_test
+Host qbit-prod-1
+    HostName qbit-prod-1.rapp.rocks
+    User root
+    IdentityFile ~/.ssh/lxc
 
-Host rah.yeet.nu
-  HostName rah.yeet.nu
-  User hieronymus
-  IdentityFile ~/.ssh/hetzner
+Host plx-prod-1
+    HostName plx-prod-1.rapp.rocks
+    User root
+    IdentityFile ~/.ssh/lxc
 
-Host rapp.rocks
-  HostName 192.156.2.1
-  User kdot
-  IdentityFile ~/.ssh/rapp.rocks
+Host ns1-prod-1
+    HostName ns1-prod-1.rapp.rocks
+    User root
+    IdentityFile ~/.ssh/lxc
+
+Host ns2-dev-1
+    HostName ns2-dev-1.rapp.rocks
+    User root
+    IdentityFile ~/.ssh/lxc
+
+Host lxc-dev-1
+    HostName 10.0.0.120
+    User berdis
+    IdentityFile ~/.ssh/lxc
