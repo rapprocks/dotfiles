@@ -28,7 +28,7 @@
 - name: Set user password
   user:
     name: "{{ user.name }}"
-    password: "{{ password_prompt.user_input | passord_hash('sha512') }}"
+    password: "{{ password_prompt.user_input | password_hash('sha512') }}"
     update_password: always
   when: create_user.changed
   tags:

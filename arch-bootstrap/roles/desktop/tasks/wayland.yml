@@ -4,3 +4,34 @@
     name: "{{ packages.desktop_wayland.pacman }}"
   tags:
     - wayland
+
+- name: Install Wayland desktop-related AUR packages
+  kewlfft.aur.aur:
+    name: "{{ packages.desktop_wayland.aur }}"
+  become: true
+  become_user: aur_builder
+  tags:
+    - wayland
+
+- name: Ensure config dir exists
+  become: yes
+  become_user: "{{ user.name }}"
+  file:
+    path: "$HOME/.config/sway"
+    recurse: true
+    state: directory
+  tags:
+    - wayland
+
+- name: Create sway config file
+  become: yes
+  become_user: "{{ user.name }}"
+  template:
+    src: "templates/sway-config.j2"
+    dest: "$HOME/.config/sway/config"
+    backup: yes
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: "0640"
+  tags:
+    - wayland

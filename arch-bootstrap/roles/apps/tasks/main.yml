@@ -4,3 +4,11 @@
     name: "{{ lookup('vars', 'packages')[item]['pacman'] }}"
   loop: "{{ host.app_groups }}"
   when: "lookup('vars', 'packages')[item]['pacman']"
+
+- name: Install AUR app groups
+  kewlfft.aur.aur:
+    name: "{{ lookup('vars', 'packages')[item]['aur'] }}"
+  loop: "{{ host.app_groups }}"
+  when: "lookup('vars', 'packages')[item]['aur']"
+  become: true
+  become_user: aur_builder

@@ -17,6 +17,7 @@ packages:
       - man-pages
       - neovim
       - networkmanager
+      - pacman-contrib
       - tmux
       - wget
   shell:
@@ -38,6 +39,8 @@ packages:
       - noto-fonts
       - ttf-jetbrains-mono-nerd
       - xdg-user-dirs
+      - pipewire-jack # Firefox-wayland dependency
+      - firefox
   desktop_wayland:
     pacman:
       - sway
@@ -47,6 +50,9 @@ packages:
       - swaylock
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-wlr
+    aur:
+      - rofi-lbonn-wayland
+      - wdisplays
   daily:
     pacman:
       - gimp
