@@ -1,0 +1,22 @@
+---
+- name: Install shell-related pacman packages
+  pacman:
+    name: "{{ packages.shell.pacman }}"
+
+- name:
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh"
+    dest: "/home/{{ user.name }}/.oh-my-zsh"
+    version: master
+    update: no
+
+- name: Write .zshrc file from template
+  become: yes
+  become_user: "{{ user.name }}"
+  template:
+    src: "templates/zshrc.j2"
+    dest: "/home/{{ user.name }}/.zshrc"
+    backup: yes
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: "0640"

@@ -1,0 +1,6 @@
+---
+- name: Install wayland desktop-related pacman packages
+  pacman:
+    name: "{{ packages.desktop_wayland.pacman }}"
+  tags:
+    - wayland

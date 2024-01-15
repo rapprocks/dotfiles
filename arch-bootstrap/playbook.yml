@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - system
+    - user
+    - services
+    - shell
+    - desktop
+    - apps

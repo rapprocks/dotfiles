@@ -1,0 +1,13 @@
+---
+- name: Set the hostname
+  hostname:
+      name: "{{ host.name }}"
+  tags:
+    - host
+
+- name: Fill hosts file
+  template:
+    src: templates/hosts
+    dest: /etc/hosts
+  tags:
+    - host

@@ -1,0 +1,53 @@
+user:
+  name: phil
+  group: phil
+  email: phil@archibald.se
+  shell: /usr/bin/zsh
+
+packages:
+  base:
+    pacman:
+      - base-devel
+      - curl
+      - zsh
+      - git
+      - btop
+      - linux-headers
+      - man-db
+      - man-pages
+      - neovim
+      - networkmanager
+      - tmux
+      - wget
+  shell:
+    pacman:
+      - eza
+      - fzf
+      - ranger
+      - nnn
+      - tldr
+      - ripgrep
+      - tmux
+      - tree
+      - rsync
+  desktop:
+    pacman:
+      - kitty
+      - alacritty
+      - nm-connection-editor
+      - noto-fonts
+      - ttf-jetbrains-mono-nerd
+      - xdg-user-dirs
+  desktop_wayland:
+    pacman:
+      - sway
+      - mako
+      - polkit
+      - swayidle
+      - swaylock
+      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-wlr
+  daily:
+    pacman:
+      - gimp
+

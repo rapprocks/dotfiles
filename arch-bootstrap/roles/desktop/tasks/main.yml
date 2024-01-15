@@ -1,0 +1,12 @@
+---
+- name: Install desktop-related pacman packages
+  pacman:
+    name: "{{ packages.desktop.pacman }}"
+
+- name: Add user to video group
+  user:
+    name: "{{ user.name }}"
+    groups: video
+    append: yes
+
+- include_tasks: wayland.yml
