@@ -2,7 +2,7 @@ user:
   name: phil
   group: phil
   email: phil@archibald.se
-  shell: /usr/bin/zsh
+  shell: /bin/zsh
 
 packages:
   base:
@@ -22,6 +22,7 @@ packages:
       - pacman-contrib
       - tmux
       - wget
+    aur: []
   shell:
     pacman:
       - eza
@@ -33,6 +34,7 @@ packages:
       - tmux
       - tree
       - rsync
+    aur: []
   desktop:
     pacman:
       - kitty
@@ -43,6 +45,7 @@ packages:
       - xdg-user-dirs
       - pipewire-jack # Firefox-wayland dependency
       - firefox
+    aur: []
   desktop_wayland:
     pacman:
       - sway
@@ -58,4 +61,5 @@ packages:
   daily:
     pacman:
       - gimp
+    aur: []
 
