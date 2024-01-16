@@ -3,7 +3,7 @@
   pacman:
     name: "{{ packages.shell.pacman }}"
 
-- name:
+- name: Install oh-my-zsh from github
   git:
     repo: "https://github.com/robbyrussell/oh-my-zsh"
     dest: "/home/{{ user.name }}/.oh-my-zsh"
