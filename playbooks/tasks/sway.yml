@@ -1,0 +1,18 @@
+---
+- name: Install sway and packages
+  become: true
+  community.general.pacman:
+    name: "{{ sway_packages }}"
+    state: present
+  changed_when: false
+
+- name: Ensure the directory exists
+  ansible.builtin.file:
+    path: $HOME/.config/sway
+    state: directory
+
+- name: Create symlink for the file
+  ansible.builtin.file:
+    src: $HOME/dotfiles/env/.config/sway/config
+    dest: $HOME/.config/sway/config
+    state: link

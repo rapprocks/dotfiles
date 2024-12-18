@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if ! command -v ansible &> /dev/null; then
+    sudo pacman -S ansible --noconfirm
+fi
+
+
+if ! command -V yay &> /dev/null; then
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
+fi
+
+cd /home/philip/dotfiles/playbooks || exit 1
+
+ansible-galaxy install -r requirements.yml
+
+ansible-playbook -i inventory main.yml -K

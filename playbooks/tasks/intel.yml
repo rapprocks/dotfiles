@@ -1,0 +1,8 @@
+---
+- name: Install intel drivers
+  become: true
+  community.general.pacman:
+    name: "{{ intel_drivers }}"
+    state: present
+  changed_when: false
+

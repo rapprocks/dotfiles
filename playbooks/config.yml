@@ -1,0 +1,54 @@
+---
+update: true
+swapfile_path: /swapfile
+swapfile_size: 8G
+
+base_packages:
+  - base
+  - base-devel
+  - linux
+  - linux-firmware
+  - sudo
+  - networkmanager
+  - openssh
+  - nano
+  - pipewire
+  - pulseaudio
+  - man-db
+  - man-pages
+  - git
+  - wget
+  - tldr
+  - fastfetch
+  - jq
+
+shell_packages:
+  - zsh
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - starship
+  - tmux
+
+intel_drivers:
+  - mesa
+
+desktop_packages:
+  - firefox
+  - alacritty
+  - thunar
+  - mako
+  - ttf-jetbrains-mono-nerd
+  - noto-fonts
+  - noto-fonts-emoji
+  - pavucontrol
+  - nwg-look
+  - xdg-utils
+
+sway_packages:
+  - sway
+  - swayidle
+  - swaylock
+  - i3status
+  - autotiling
+  - rofi-wayland
+  - brightnessctl
