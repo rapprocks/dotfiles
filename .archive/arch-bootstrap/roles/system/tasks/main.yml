@@ -1,4 +1,0 @@
----
-- include_tasks: host.yml
-- include_tasks: pacman.yml
-- include_tasks: aur.yml

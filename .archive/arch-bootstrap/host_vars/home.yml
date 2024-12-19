@@ -1,5 +1,0 @@
-host:
-  name: archibald
-  id: home
-  app_groups:
-    - daily
