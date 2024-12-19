@@ -21,6 +21,9 @@ base_packages:
   - tldr
   - fastfetch
   - jq
+  - fzf
+  - ripgrep
+  - yazi
 
 shell_packages:
   - zsh
@@ -28,6 +31,8 @@ shell_packages:
   - zsh-syntax-highlighting
   - starship
   - tmux
+  - bat
+  - eza
 
 intel_drivers:
   - mesa
