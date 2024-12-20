@@ -48,7 +48,8 @@ include /etc/sway/config-vars.d/*
 # Example configuration:
 #
 output eDP-1 resolution 1920x1200 scale 1.30
-output DP-3 resolution 3840x2160@120.00Hz scale 2.0
+#output DP-3 resolution 3840x2160@120.00Hz scale 2.0
+output DP-3 resolution 2560x1440@74.98Hz scale 1.3
 output DP-1 resolution 3840x2160@120.00Hz scale 2.0
 output HDMI-A-1 resolution 2560x1440@74.97Hz scale 1.3 pos 0,0
 
@@ -95,6 +96,14 @@ input "13364:265:Keychron_Keychron_Q1" {
 }
 
 input "1739:52900:SYNA30D9:00_06CB:CEA4_Touchpad" {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  accel_profile flat
+  pointer_accel 1.0
+}
+
+input "1739:52900:SYNA310D:00_06CB:CEA4_Touchpad" {
   dwt enabled
   tap enabled
   natural_scroll enabled
