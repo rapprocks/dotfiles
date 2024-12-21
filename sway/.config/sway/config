@@ -13,7 +13,8 @@ default_border pixel 2
 default_floating_border normal 2
 hide_edge_borders smart
 
-exec --systemd XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=wayland QT_QPA_PLATFORM=wayland GDK_BACKEND=wayland
+exec --systemd XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=wayland
+exec --no-startup-id GDK_BACKEND="wayland" GT_QPA_PLATFORM="wayland"
 exec polkit-gnome-authentication-agent-1 mako
 exec autotiling
 

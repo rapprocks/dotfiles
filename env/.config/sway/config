@@ -147,7 +147,7 @@ input "1739:52900:SYNA30D9:00_06CB:CEA4_Touchpad" {
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    #bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -243,6 +243,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+o exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
+
+bindsym $mod+shift+l exec 'swaylock --image /home/philip/test-locked-bg.png'
 
 #
 # Media keys
