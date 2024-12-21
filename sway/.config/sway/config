@@ -118,7 +118,7 @@ input "1739:52900:SYNA310D:00_06CB:CEA4_Touchpad" {
     # Start a terminal
     bindsym $mod+Return exec $term
 
-	bindsym $mod+t exec $fileManager
+		bindsym $mod+t exec $fileManager
 
     # Kill focused window
     bindsym $mod+q kill
@@ -145,7 +145,7 @@ input "1739:52900:SYNA310D:00_06CB:CEA4_Touchpad" {
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    #bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -252,6 +252,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+o exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
+
+bindsym $mod+l exec swaylock -f -c 000000
 
 #
 # Media keys
