@@ -39,12 +39,6 @@ require("lazy").setup({
 			end,
 		},
 		{
-			'goolord/alpha-nvim',
-			config = function()
-				require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-			end
-		},
-		{
 			'nvim-tree/nvim-web-devicons',
 		},
 		{ import = "config.plugins" },
