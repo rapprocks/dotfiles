@@ -85,6 +85,11 @@ return {
           capabilities = capabilities,
         })
       end,
+				["yamlls"] = function()
+					lspconfig["yamlls"].setup({
+						capabilities = capabilities,
+					})
+				end,
         ["emmet_ls"] = function()
         -- configure emmet language server
         lspconfig["emmet_ls"].setup({

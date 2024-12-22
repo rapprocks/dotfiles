@@ -33,6 +33,7 @@ return {
         "tailwindcss",
         "lua_ls",
         "emmet_ls",
+				"yamlls",
       },
     })
 
@@ -41,6 +42,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "eslint_d",
+				"yamlfmt",
       },
     })
   end,
