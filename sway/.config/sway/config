@@ -17,6 +17,7 @@ exec --systemd XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=wayland
 exec --no-startup-id GDK_BACKEND="wayland" GT_QPA_PLATFORM="wayland"
 exec polkit-gnome-authentication-agent-1 mako
 exec autotiling
+exec swayosd-server
 
 seat seat0 xcursor_theme default 22
 
@@ -259,9 +260,19 @@ bindsym $mod+l exec swaylock -f -c 000000
 #
 # Media keys
 #
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 4 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 4 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 4 toggle # mute sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 4 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 4 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 4 toggle # mute sound
+
+#
+# Testing SwayOSD
+#
+# Sink volume raise optionally with --device
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+# Sink volume lower optionally with --device
+bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume lower
+# Sink volume toggle mute
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
 
 # # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +10% # increase screen brightness
@@ -283,5 +294,5 @@ bar {
 		background #323232
 	}
 }
-
+#
 include /etc/sway/config.d/*
