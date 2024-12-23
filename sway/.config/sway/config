@@ -101,6 +101,7 @@ input "13364:265:Keychron_Keychron_Q1" {
 input "1739:52900:SYNA30D9:00_06CB:CEA4_Touchpad" {
   dwt enabled
   tap enabled
+	click_method clickfinger
   natural_scroll enabled
   accel_profile flat
   pointer_accel 1.0
@@ -109,6 +110,7 @@ input "1739:52900:SYNA30D9:00_06CB:CEA4_Touchpad" {
 input "1739:52900:SYNA310D:00_06CB:CEA4_Touchpad" {
   dwt enabled
   tap enabled
+	click_method clickfinger
   natural_scroll enabled
   accel_profile flat
   pointer_accel 1.0
