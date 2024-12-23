@@ -41,7 +41,7 @@ require("lazy").setup({
 		{
 			'nvim-tree/nvim-web-devicons',
 		},
-		{ import = "config.plugins" },
+		{ import = "config.plugins", "config.lsp" },
 	},
 	change_detection = {
 		enabled = false,
