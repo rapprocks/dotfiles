@@ -1,0 +1,118 @@
+[
+	{
+		"position": "top",
+		"height": 20,
+		"background": "#181818",
+		"modules-center": [
+			"clock"
+		],
+		"modules-left": [
+			"custom/cli",
+			"hyprland/workspaces"
+		],
+		"modules-right": [
+			"disk",
+			"idle_inhibitor",
+			"pulseaudio",
+			"battery",
+			"bluetooth",
+			"network"
+		],
+		"battery": {
+			"format": "{icon}",
+			"format-icons": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"states": {
+				"critical": 15,
+				"good": 95,
+				"warning": 30
+			}
+		},
+		"disk": {
+			"interval": 30,
+			"format": "󰣳 {specific_free:0.2f}GB / {specific_total:0.2f}GB",
+			"path": "/mnt/nas/downloads/torrents",
+			"unit": "GB"
+		},
+		"bluetooth": {
+			"controller": "controller1",
+			"format": "",
+			"format-disabled": "",
+			"tooltip-format": "{controller_alias} {controller_address}",
+			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"on-click": "alacritty -e bluetui"
+		},
+		"clock": {
+			"format": "{:%A %H:%M}",
+			"interval": 30,
+			"tooltip": false
+		},
+		"custom/cli": {
+			"format": "",
+			"tooltip-format": "Hyprland ya'll"
+		},
+		"custom/screenrec": {
+			"exec": "~/.config/waybar/screenrec-indicator.sh",
+			"on-click": "~/bin/screenrec.sh",
+			"return-type": "json",
+			"signal": 8
+		},
+		"custom/tailscale": {
+			"exec": "~/.dotfiles/bin/tailscale.sh --status",
+			"format": "{icon}",
+			"format-icons": {
+				"connected": "󱗼",
+				"stopped": "󱗼"
+			},
+			"interval": 3,
+			"on-click": "~/.dotfiles/bin/tailscale.sh --toggle",
+			"return-type": "json"
+		},
+		"idle_inhibitor": {
+			"format": "{icon}",
+			"format-icons": {
+				"activated": "",
+				"deactivated": ""
+			}
+		},
+		"network": {
+			"format": "{icon}",
+			"format-disconnected": "󰖪",
+			"format-ethernet": "󰈀",
+			"format-icons": [
+				"󰤯",
+				"󰤟",
+				"󰤢",
+				"󰤥",
+				"󰤨"
+			],
+			"format-wifi": "{icon}",
+			"interval": 3,
+			"nospacing": 1,
+			"on-click": "alacritty --class=Impala -e impala",
+			"tooltip-format-disconnected": "Disconnected",
+			"tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+			"tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}"
+		},
+		"pulseaudio": {
+			"format": "{icon}",
+			"format-icons": {
+				"default": [
+					"",
+					"",
+					""
+				],
+				"headphone": "",
+				"headset": ""
+			},
+			"format-muted": "",
+			"on-click": "pavucontrol"
+		}
+	}
+]

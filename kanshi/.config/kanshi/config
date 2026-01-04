@@ -1,0 +1,48 @@
+output "eDP-1" {
+  mode 1920x1200@60.03
+  scale 1.25
+  alias $INTERNAL
+}
+
+output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
+  mode 3840x2160@120
+  scale 2.0
+  alias $HOME_LG
+}
+
+output "HP Inc. HP Z27n G2 6CM80425VV" {
+  mode 2560x1440@74.97
+  scale 1.33333
+  alias $HOME_HP
+}
+
+output "Samsung Electric Company LS34A650U H4ZT109948" {
+	mode 3440x1440@99.98
+	scale 1.5
+	alias $WORK_CURVED
+}
+
+profile apollo {
+  output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
+    mode 3840x2160@144.00Hz
+	}
+}
+
+profile docked-home {
+  output $INTERNAL disable
+  output $HOME_LG enable
+}
+
+profile docked-hp {
+  output $INTERNAL enable
+  output $HOME_HP enable
+}
+
+profile builtin-display {
+  output $INTERNAL enable
+}
+
+profile docked-work {
+	output $INTERNAL disable
+	output $WORK_CURVED enable
+}
