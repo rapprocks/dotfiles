@@ -58,8 +58,8 @@
 			"tooltip-format": "Hyprland ya'll"
 		},
 		"custom/screenrec": {
-			"exec": "~/.config/waybar/screenrec-indicator.sh",
-			"on-click": "~/bin/screenrec.sh",
+			"exec": "screenrec",
+			"on-click": "screenrec --indicator",
 			"return-type": "json",
 			"signal": 8
 		},
