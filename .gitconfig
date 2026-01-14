@@ -1,6 +1,5 @@
-# This is Git's per-user configuration file.
+[url "ssh://git@github.com/"]
+	insteadOf = "https://github.com/"
 [user]
-    name = Philip Rapp
-    email = rapprocks@users.noreply.github.com
-[http]
-	postBuffer = 157286400
+	email = philip.rapp@me.com
+	name = rapprocks

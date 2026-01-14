@@ -4,7 +4,8 @@
 		"height": 20,
 		"background": "#181818",
 		"modules-center": [
-			"clock"
+			"clock",
+			"custom/screenrecording"
 		],
 		"modules-left": [
 			"custom/cli",
@@ -57,7 +58,7 @@
 			"format": "",
 			"tooltip-format": "Hyprland ya'll"
 		},
-		"custom/screenrec": {
+		"custom/screenrecording": {
 			"exec": "screenrec",
 			"on-click": "screenrec --indicator",
 			"return-type": "json",
