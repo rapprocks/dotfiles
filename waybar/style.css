@@ -61,6 +61,6 @@ window#waybar {
 	font-size: 10px;
 }
 
-#custom-screenrec.active {
+#custom-screenrecording.active {
 	color: #fb4934;
 }
