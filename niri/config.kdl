@@ -2,6 +2,7 @@ input {
     keyboard {
         xkb {
             layout "se"
+						variant "nodeadkeys"
             options "caps:escape,altwin:swap_lalt_lwin"
         }
 				repeat-delay 225
@@ -11,13 +12,13 @@ input {
     touchpad {
         // off
         tap
-        // dwt
+        dwt
         // dwtp
         // drag false
         // drag-lock
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 1.0
+        accel-profile "flat"
         // scroll-method "two-finger"
         // disabled-on-external-mouse
     }
@@ -188,15 +189,21 @@ layout {
     }
 }
 
+environment {
+	QT_QPA_PLATFORM "wayland"
+	NIXOS_OZONE_WL "1"
+	XDG_CURRENT_DESKTOP "niri"
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE"
+spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
-spawn-sh-at-startup "/home/earn/personal/git/dotfiles/scripts/start-waybar.sh"
+spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
 
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
@@ -295,10 +302,11 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
-		Mod+T hotkey-overlay-title="Open Yazi" {spawn "alacritty -e yazi";}
+		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -392,8 +400,8 @@ binds {
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    //Mod+U              { focus-workspace-down; }
+    //Mod+I              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }

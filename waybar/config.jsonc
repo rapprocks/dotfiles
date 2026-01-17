@@ -1,7 +1,7 @@
 [
 	{
 		"position": "top",
-		"height": 20,
+		"height": 25,
 		"background": "#181818",
 		"modules-center": [
 			"clock",

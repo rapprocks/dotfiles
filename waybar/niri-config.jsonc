@@ -1,7 +1,7 @@
 [
 	{
 		"position": "top",
-		"height": 25,
+		"height": 20,
 		"background": "#181818",
 		"modules-center": [
 			"clock",
@@ -14,7 +14,7 @@
 		"modules-right": [
 			"disk",
 			"idle_inhibitor",
-			"pulseaudio",
+			"pulseaudio/slider",
 			"battery",
 			"bluetooth",
 			"network"
@@ -100,6 +100,11 @@
 			"tooltip-format-disconnected": "Disconnected",
 			"tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
 			"tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}"
+		},
+		"pulseaudio/slider": {
+			"min": 0,
+			"max": 100,
+			"orientation": "horizontal"
 		},
 		"pulseaudio": {
 			"format": "{icon}",
