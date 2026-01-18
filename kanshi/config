@@ -25,7 +25,7 @@ output "Samsung Electric Company LS34A650U H4ZT109948" {
 profile apollo {
   output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
     mode 3840x2160@144.00Hz
-		scale 2.0
+		scale 1.75
 	}
 }
 
