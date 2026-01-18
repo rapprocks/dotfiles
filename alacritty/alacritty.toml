@@ -32,5 +32,5 @@ save_to_clipboard = true
 #shape = "Block"
 
 [window.padding]
-x = 5
-y = 5
+x = 8
+y = 8
