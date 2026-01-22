@@ -22,6 +22,12 @@ input {
 
 }
 
+gestures {
+	hot-corners {
+        off
+    }
+}
+
 layout {
     gaps 10
 
@@ -131,6 +137,8 @@ binds {
     Mod+Shift+C {
 			spawn-sh "./home/earn/personal/git/dotfiles/script/reload-desktop.sh";
 		}
+
+		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o /home/philip/Pictures/screenshots/";}
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -278,5 +286,5 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    Mod+Shift+P { power-off-monitors; }
+    //Mod+Shift+P { power-off-monitors; }
 }
