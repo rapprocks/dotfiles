@@ -28,6 +28,11 @@ gestures {
     }
 }
 
+workspace "spotify" {}
+workspace "browser" {}
+workspace "ai" {}
+workspace "terminal" {}
+
 layout {
     gaps 10
 
@@ -134,9 +139,7 @@ binds {
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    Mod+Shift+C {
-			spawn-sh "./home/earn/personal/git/dotfiles/script/reload-desktop.sh";
-		}
+    Mod+Shift+C { spawn "~/personal/git/dotfiles/scripts/reload-desktop.sh"; }
 
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o /home/philip/Pictures/screenshots/";}
 
@@ -272,7 +275,7 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    Mod+V       { toggle-window-floating; }
+    Mod+Shift+Space       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     Mod+W { toggle-column-tabbed-display; }
