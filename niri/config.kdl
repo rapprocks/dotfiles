@@ -142,6 +142,7 @@ binds {
     Mod+Shift+C { spawn "~/personal/git/dotfiles/scripts/reload-desktop.sh"; }
 
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o /home/philip/Pictures/screenshots/";}
+		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "screenrec";}
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -256,7 +257,7 @@ binds {
     Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
+		//Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }

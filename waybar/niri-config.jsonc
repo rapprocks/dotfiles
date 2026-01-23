@@ -50,16 +50,16 @@
 			"on-click": "alacritty -e bluetui"
 		},
 		"niri/workspaces": {
-			"format": "{icon}",
-			"format-icons": {
-				"ai": "",
-				"terminal": "",
-				"browser": "<b></b>",
-				"spotify": "<b></b>",
-				// Icons by state
-				"active": "",
-				"default": ""
-			}
+			"format": "{icon}"
+			//"format-icons": {
+			//"ai": "",
+			//"terminal": "",
+			//"browser": "",
+			//"spotify": "<b></b>"
+			// Icons by state
+			//"active": "",
+			//"default": ""
+			//}
 		},
 		"clock": {
 			"format": "{:%A %H:%M}",
