@@ -28,8 +28,8 @@ gestures {
     }
 }
 
-workspace "spotify" {}
 workspace "browser" {}
+workspace "spotify" {}
 workspace "ai" {}
 workspace "terminal" {}
 
@@ -85,6 +85,7 @@ environment {
 
 spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/MC_snow_night_moon.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
@@ -165,10 +166,11 @@ binds {
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
     Mod+Right { focus-column-right; }
-    Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
-    Mod+L     { focus-column-right; }
+
+		Mod+H hotkey-overlay-title="Focus column left" { focus-column-left; }
+    Mod+J hotkey-overlay-title="Focus window/workspace down" { focus-window-or-workspace-down; }
+    Mod+K hotkey-overlay-title="Focus window/workspace up" { focus-window-or-workspace-up; }
+    Mod+L hotkey-overlay-title="Focus column right" { focus-column-right; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
@@ -188,10 +190,12 @@ binds {
     Mod+Shift+Down  { focus-monitor-down; }
     Mod+Shift+Up    { focus-monitor-up; }
     Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+H     { focus-monitor-left; }
-    Mod+Shift+J     { focus-monitor-down; }
-    Mod+Shift+K     { focus-monitor-up; }
-    Mod+Shift+L     { focus-monitor-right; }
+
+
+    Mod+Shift+H hotkey-overlay-title="" { move-column-left-or-to-monitor-left; }
+    Mod+Shift+J hotkey-overlay-title="" { move-column-to-workspace-down; }
+    Mod+Shift+K hotkey-overlay-title="" { move-column-to-workspace-up; }
+    Mod+Shift+L hotkey-overlay-title="" { move-column-right-or-to-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
