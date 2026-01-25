@@ -28,11 +28,6 @@ gestures {
     }
 }
 
-workspace "browser" {}
-workspace "spotify" {}
-workspace "ai" {}
-workspace "terminal" {}
-
 layout {
     gaps 10
 
@@ -85,7 +80,7 @@ environment {
 
 spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
-spawn-sh-at-startup "swaybg -i $HOME/Pictures/MC_snow_night_moon.png"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/hyprlock.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"

@@ -1,89 +1,91 @@
-* {
-	font-size: 12px;
-	min-height: 20px;
-	font-family: JetBrainsMono Nerd Font;
-}
+ /* Using a string */
 
-window#waybar {
-	background: #181818;
-	color: #ffffff;
-}
+ * {
+ 	font-size: 12px;
+ 	min-height: 20px;
+ 	font-family: JetBrainsMono Nerd Font;
+ }
 
-#disk,
-#network,
-#battery,
-#pulseaudio,
-#pulseaudio-slider,
-#bluetooth,
-#custom-cli,
-#custom-tailscale,
-#idle_inhibitor {
-	padding: 0 10px;
-}
+ window#waybar {
+ 	background: #181818;
+ 	color: #ffffff;
+ }
 
-#network {
-	margin-right: 10px;
-}
+ #disk,
+ #network,
+ #battery,
+ #pulseaudio,
+ #pulseaudio-slider,
+ #bluetooth,
+ #custom-cli,
+ #custom-tailscale,
+ #idle_inhibitor {
+ 	padding: 0 10px;
+ }
 
-#workspaces button {
-	color: #a6adc8;
-	border: none;
-}
+ #network {
+ 	margin-right: 10px;
+ }
 
-#workspaces button.active {
-	border-bottom: none;
-	border-radius: 0;
-	color: #ffffff;
-}
+ #workspaces button {
+ 	color: #a6adc8;
+ 	border: none;
+ }
 
-#bluetooth {
-	color: #3c3836;
-}
+ #workspaces button.active {
+ 	border-bottom: none;
+ 	border-radius: 0;
+ 	color: #ffffff;
+ }
 
-#bluetooth.connected {
-	color: #ffffff;
-}
+ #bluetooth {
+ 	color: #3c3836;
+ }
 
-#custom-cli {
-	color: #ebbcba;
-}
+ #bluetooth.connected {
+ 	color: #ffffff;
+ }
 
-#custom-tailscale.connected {
-	color: #ffffff;
-}
+ #custom-cli {
+ 	color: #ebbcba;
+ }
 
-#custom-tailscale.stopped {
-	color: #a6adc8;
-}
+ #custom-tailscale.connected {
+ 	color: #ffffff;
+ }
 
-#custom-screenrecording {
-	min-width: 12px;
-	font-size: 10px;
-}
+ #custom-tailscale.stopped {
+ 	color: #a6adc8;
+ }
 
-#custom-screenrecording.active {
-	color: #fb4934;
-}
+ #custom-screenrecording {
+ 	min-width: 12px;
+ 	font-size: 10px;
+ }
 
-#pulseaudio-slider slider {
-	min-height: 0px;
-	min-width: 0px;
-	opacity: 0;
-	background-image: none;
-	border: 0;
-	box-shadow: none;
-}
+ #custom-screenrecording.active {
+ 	color: #fb4934;
+ }
 
-#pulseaudio-slider trough {
-	min-height: 5px;
-	min-width: 80px;
-	border-radius: 5px;
-	opacity: 0;
-}
+ #pulseaudio-slider slider {
+ 	min-height: 0px;
+ 	min-width: 0px;
+ 	opacity: 0;
+ 	background-image: none;
+ 	border: 0;
+ 	box-shadow: none;
+ }
 
-#pulseaudio-slider highlight {
-	min-height: 6px;
-	min-width: 10px;
-	border-radius: 5px;
-	background: #ebbcba;
-}
+ #pulseaudio-slider trough {
+ 	min-height: 5px;
+ 	min-width: 80px;
+ 	border-radius: 5px;
+ 	opacity: 0;
+ }
+
+ #pulseaudio-slider highlight {
+ 	min-height: 6px;
+ 	min-width: 10px;
+ 	border-radius: 5px;
+ 	background: #ebbcba;
+ }

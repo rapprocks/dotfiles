@@ -1,12 +1,12 @@
 output "eDP-1" {
   mode 1920x1200@60.03
-  scale 1.25
+  scale 1.2
   alias $INTERNAL
 }
 
 output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
-  mode 3840x2160@120
-  scale 2.0
+  mode 3840x2160@144.00Hz
+  scale 1.75
   alias $HOME_LG
 }
 
@@ -36,7 +36,7 @@ profile apollo {
 }
 
 profile docked-home {
-  output $INTERNAL disable
+  output $INTERNAL enable
   output $HOME_LG enable
 }
 

@@ -19,6 +19,15 @@
 			"bluetooth",
 			"network"
 		],
+		"niri/workspaces": {
+			"format": "{index}",
+			"on-click": "activate",
+			"all-outputs": true,
+			"format-icons": {
+				"active": "",
+				"default": ""
+			}
+		},
 		"battery": {
 			"format": "{icon}",
 			"format-icons": [
@@ -48,15 +57,6 @@
 			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
 			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 			"on-click": "alacritty -e bluetui"
-		},
-		"niri/workspaces": {
-			"format": "{name} {icon}",
-			"format-icons": {
-				"ai": "",
-				"terminal": "",
-				"browser": "",
-				"spotify": "<b></b>"
-			}
 		},
 		"clock": {
 			"format": "{:%A %H:%M}",
