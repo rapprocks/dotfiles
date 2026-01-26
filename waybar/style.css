@@ -27,16 +27,38 @@
  	margin-right: 10px;
  }
 
- #workspaces button {
- 	color: #a6adc8;
- 	border: none;
- }
+#workspaces {
+	padding: 0 5px;
+}
 
- #workspaces button.active {
- 	border-bottom: none;
- 	border-radius: 0;
- 	color: #ffffff;
- }
+#workspaces button {
+	color: #a6adc8;
+	background: #2a2a2a;
+	border: none;
+	border-radius: 10px;
+	padding: 0 8px;
+	margin: 5px 2px;
+	min-width: 20px;
+	min-height: 0;
+	transition: all 0.2s ease;
+}
+
+#workspaces button label {
+	min-height: 0;
+	padding: 0;
+}
+
+#workspaces button:hover {
+	background: #3a3a3a;
+	color: #ffffff;
+}
+
+#workspaces button.active {
+	background: #ebbcba;
+	color: #181818;
+	min-width: 32px;
+	padding: 0 12px;
+}
 
  #bluetooth {
  	color: #3c3836;

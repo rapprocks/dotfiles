@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Spotify
+Exec=sh -c "chromium --app='http://spotify.com'"
+Icon=chromium
+Terminal=false
+Categories=Internet

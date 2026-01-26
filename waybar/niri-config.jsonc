@@ -20,7 +20,7 @@
 			"network"
 		],
 		"niri/workspaces": {
-			"format": "{index}",
+			"format": "",
 			"on-click": "activate",
 			"all-outputs": true,
 			"format-icons": {
