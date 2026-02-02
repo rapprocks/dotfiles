@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Spotify
-Exec=sh -c "brave --app='http://spotify.com'"
+Name=Google Chat
+Exec=sh -c "brave --app='http://chat.google.com'"
 Icon=chromium
 Terminal=false
 Categories=Internet

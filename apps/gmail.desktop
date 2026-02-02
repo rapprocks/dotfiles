@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Spotify
-Exec=sh -c "brave --app='http://spotify.com'"
+Name=Gmail
+Exec=sh -c "brave --app='http://gmail.com'"
 Icon=chromium
 Terminal=false
 Categories=Internet

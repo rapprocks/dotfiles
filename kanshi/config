@@ -24,7 +24,7 @@ output "Samsung Electric Company LS34A650U H4ZT109948" {
 
 output "Samsung Electric Company LS32A600U H4ZT300201" {
 	mode 2560x1440@74.998
-	scale 1.30
+	scale 1.20
 	alias $WORK_FLAT
 }
 
