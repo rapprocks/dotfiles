@@ -80,7 +80,7 @@ environment {
 
 spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
-spawn-sh-at-startup "swaybg -i $HOME/Pictures/hyprlock.png"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/hyprlock.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
