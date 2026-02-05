@@ -1,0 +1,15 @@
+[
+	{
+		"position": "top",
+		"margin": "10",
+		"reload_style_on_change": true,
+		"modules-center": [
+			"niri/workspaces"
+		],
+		"modules-left": [],
+		"modules-right": [],
+		"niri/workspaces": {
+			"format": ""
+		}
+	}
+]

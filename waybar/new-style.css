@@ -4,34 +4,21 @@
 	border: none;
 	border-radius: 0;
 	font-family: JetBrainsMono Nerd Font;
-	font-size: 12px;
+	font-size: 13px;
 	min-height: 0;
 }
 
 window#waybar {
 	background-color: @base;
 	color: @text;
-	padding: 20px;
 }
 
-#disk,
-#network,
-#battery,
-#pulseaudio,
-#pulseaudio-slider,
-#bluetooth,
-#custom-cli,
-#custom-tailscale,
-#idle_inhibitor {
-	padding: 0 1rem;
+#workspaces {
+	background: #ffffff;
+	padding: 10px;
 }
 
 #workspaces button {
-	border-radius: 20px;
-	padding: 0 5px;
-	color: white;
-}
-
-#workspaces button.focused {
-	background: #ebbcba;
+	background: #123456;
+	min-height: 2px;
 }
