@@ -62,6 +62,10 @@ window#waybar {
 	padding: 0 12px;
 }
 
+#workspaces button.empty {
+	background: transparent;
+}
+
 #bluetooth {
 	color: #3c3836;
 }
