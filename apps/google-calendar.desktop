@@ -2,6 +2,6 @@
 Type=Application
 Name=Google Calendar
 Exec=sh -c "brave --app='http://calendar.google.com'"
-Icon=chromium
+Icon=~/.local/share/applications/icons/google-calendar.png
 Terminal=false
 Categories=Internet

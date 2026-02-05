@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Configuration
+BROWSER="firefox"
+SEARCH_ENGINE="https://google.com/?q="
+
+# Run Rofi in drun mode and capture the user's input.
+# -run-command "echo {cmd}" forces rofi to print the command instead of executing it.
+# We remove -no-custom to allow typing search terms.
+INPUT=$(rofi -show drun -show-icons -run-command "echo {cmd}" -p "Run or Search: ")
+
+# Check if Rofi was exited without selection (e.g., Esc key)
+if [ -z "$INPUT" ]; then
+    exit 0
+fi
+
+# Extract the command name (first word) to check if it exists
+CMD=$(echo "$INPUT" | awk '{print $1}')
+
+# Check if the command exists
+if command -v "$CMD" >/dev/null 2>&1; then
+    # Input matches a program, so execute it
+    # We use eval to handle arguments properly (e.g. firefox %u)
+    # We strip common desktop file field codes like %u or %F just in case
+    CLEAN_INPUT=${INPUT//\%[a-zA-Z]/}
+    eval "$CLEAN_INPUT" &
+else
+    # No matching program found, so treat the input as a search query
+    $BROWSER "${SEARCH_ENGINE}${INPUT}" &
+fi

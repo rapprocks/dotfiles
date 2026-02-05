@@ -1,7 +1,10 @@
 [Desktop Entry]
+Version=1.0
 Type=Application
+Comment=Gmail
 Name=Gmail
 Exec=sh -c "brave --app='http://gmail.com'"
-Icon=chromium
+Icon=~/.local/share/applications/icons/gmail.png
 Terminal=false
 Categories=Internet
+StartupNotify=true

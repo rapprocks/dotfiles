@@ -2,7 +2,7 @@
 Type=Application
 Name=Feedly RSS
 Exec=brave --app=https://feedly.com --ozone-platform=wayland --class=feedly
-Icon=Feedly
+Icon=$HOME/.local/share/applications/icons/feedly.png
 Terminal=false
 Categories=Internet
 StartupNotify=true
