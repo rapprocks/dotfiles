@@ -2,6 +2,6 @@
 Type=Application
 Name=Google Chat
 Exec=sh -c "brave --app='http://chat.google.com'"
-Icon=chromium
+Icon=/home/philip/.local/share/icons/google-chat.png
 Terminal=false
 Categories=Internet

@@ -4,7 +4,7 @@ Type=Application
 Comment=Gmail
 Name=Gmail
 Exec=sh -c "brave --app='http://gmail.com'"
-Icon=~/.local/share/applications/icons/gmail.png
+Icon=/home/philip/.local/share/icons/gmail.png
 Terminal=false
 Categories=Internet
 StartupNotify=true

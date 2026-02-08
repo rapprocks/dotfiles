@@ -1,7 +1,10 @@
 [Desktop Entry]
+Version=1.0
 Type=Application
+Comment=Google Calendar
 Name=Google Calendar
 Exec=sh -c "brave --app='http://calendar.google.com'"
-Icon=~/.local/share/applications/icons/google-calendar.png
+Icon=/home/philip/.local/share/icons/google-calendar.png
 Terminal=false
 Categories=Internet
+StartupNotify=true

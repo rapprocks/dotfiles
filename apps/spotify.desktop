@@ -1,7 +1,10 @@
 [Desktop Entry]
+Version=1.0
 Type=Application
+Comment=Spotify
 Name=Spotify
 Exec=sh -c "brave --app='http://spotify.com'"
-Icon=chromium
+Icon=/home/philip/.local/share/icons/spotify.png
 Terminal=false
 Categories=Internet
+StartupNotify=true
