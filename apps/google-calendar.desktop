@@ -4,7 +4,7 @@ Type=Application
 Comment=Google Calendar
 Name=Google Calendar
 Exec=sh -c "brave --app='http://calendar.google.com'"
-Icon=/home/philip/.local/share/icons/google-calendar.png
+Icon=/home/earn/.local/share/icons/google-calendar.png
 Terminal=false
 Categories=Internet
 StartupNotify=true

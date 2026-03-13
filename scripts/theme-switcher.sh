@@ -1,107 +1,53 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Simple theme switcher with light/dark support
-# Usage: theme-switch <dark|light> or theme-switch (toggles)
+export PATH="/run/current-system/sw/bin:$PATH"
 
-CONFIG_DIR="$HOME/.config/mytheme"
-THEMES_DIR="$CONFIG_DIR/themes"
-CURRENT_DIR="$CONFIG_DIR/current"
-CURRENT_NAME_FILE="$CONFIG_DIR/current.name"
+DOTFILES="$HOME/personal/git/dotfiles"
+CONFIG="$HOME/.config"
+DCONF_KEY="/org/gnome/desktop/interface/color-scheme"
 
-# Get current theme name
-get_current_theme() {
-  [[ -f "$CURRENT_NAME_FILE" ]] && cat "$CURRENT_NAME_FILE" || echo ""
-}
-
-# Toggle between light and dark if no argument given
-if [[ -z "$1" ]]; then
-  current=$(get_current_theme)
-  if [[ "$current" == "light" ]]; then
-    THEME_NAME="dark"
+if [[ "${1:-}" == "--status" ]]; then
+  if [[ "$(dconf read $DCONF_KEY)" == "'prefer-dark'" ]]; then
+    echo '{"text": "󰖔", "class": "dark"}'
   else
-    THEME_NAME="light"
+    echo '{"text": "󰖨", "class": "light"}'
   fi
+  exit 0
+fi
+
+# Detect current mode from system theme (set by nwg-look)
+if [[ "$(dconf read $DCONF_KEY)" == "'prefer-dark'" ]]; then
+  mode=light
 else
-  THEME_NAME="$1"
+  mode=dark
 fi
 
-THEME_PATH="$THEMES_DIR/$THEME_NAME"
+# Toggle system theme (source of truth)
+dconf write $DCONF_KEY "'prefer-${mode}'"
 
-if [[ ! -d "$THEME_PATH" ]]; then
-  echo "Theme '$THEME_NAME' not found in $THEMES_DIR"
-  exit 1
-fi
+# Sync GTK settings.ini files
+gtk_dark=$( [[ "$mode" == "dark" ]] && echo 1 || echo 0 )
+for v in gtk-3.0 gtk-4.0; do
+  sed -i "s/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=$gtk_dark/" \
+    "$CONFIG/$v/settings.ini" 2>/dev/null || true
+done
 
-# Copy theme to current
-rm -rf "$CURRENT_DIR"
-mkdir -p "$CURRENT_DIR"
-cp -r "$THEME_PATH/"* "$CURRENT_DIR/"
-echo "$THEME_NAME" > "$CURRENT_NAME_FILE"
+# app:symlink_name:dark_file:light_file
+apps=(
+  "alacritty:colors.toml:rose-pine.toml:rose-pine-dawn.toml"
+  "fuzzel:colors.ini:rose-pine.ini:rose-pine-dawn.ini"
+	"tmux:colors.conf:rose-pine.conf:rose-pine-dawn.conf"
+	"waybar:colors.css:rose-pine.css:rose-pine-dawn.css"
+)
 
-echo "Switched to theme: $THEME_NAME"
+for entry in "${apps[@]}"; do
+  IFS=: read -r app symlink dark light <<< "$entry"
+  [[ "$mode" == "dark" ]] && theme="$dark" || theme="$light"
+  ln -sf "$DOTFILES/$app/$theme" "$CONFIG/$app/$symlink"
+done
 
-# Detect if light or dark mode
-is_light_mode() {
-  [[ -f "$CURRENT_DIR/light.mode" ]]
-}
+tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null || true
 
-# ============================================
-# RELOAD SERVICES/APPS - customize as needed
-# ============================================
-
-# GTK/GNOME apps (file managers, etc.)
-if command -v gsettings &>/dev/null; then
-  if is_light_mode; then
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
-  else
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-  fi
-  echo "  → GTK theme updated"
-fi
-
-# Terminal emulators
-# Alacritty - just touch the config file to trigger reload
-if [[ -f ~/.config/alacritty/alacritty.toml ]]; then
-  touch ~/.config/alacritty/alacritty.toml
-  echo "  → Alacritty reloaded"
-fi
-
-# Kitty
-if pgrep -x kitty &>/dev/null; then
-  killall -SIGUSR1 kitty
-  echo "  → Kitty reloaded"
-fi
-
-# Ghostty
-if pgrep -x ghostty &>/dev/null; then
-  killall -SIGUSR2 ghostty
-  echo "  → Ghostty reloaded"
-fi
-
-# Hyprland (if using)
-if command -v hyprctl &>/dev/null && [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
-  hyprctl reload &>/dev/null
-  echo "  → Hyprland reloaded"
-fi
-
-# Waybar (if using)
-if pgrep -x waybar &>/dev/null; then
-  killall -SIGUSR2 waybar  # or: pkill waybar && waybar &
-  echo "  → Waybar reloaded"
-fi
-
-# Mako notifications (if using)
-if command -v makoctl &>/dev/null && pgrep -x mako &>/dev/null; then
-  makoctl reload
-  echo "  → Mako reloaded"
-fi
-
-# Sway (if using)
-if command -v swaymsg &>/dev/null && [[ "$XDG_CURRENT_DESKTOP" == "sway" ]]; then
-  swaymsg reload
-  echo "  → Sway reloaded"
-fi
-
-echo "Done!"
+#echo "Switched to $mode mode"
+notify-send "Switched to $mode mode"

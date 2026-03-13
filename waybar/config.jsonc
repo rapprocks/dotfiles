@@ -12,6 +12,7 @@
 			"hyprland/workspaces"
 		],
 		"modules-right": [
+			"custom/theme",
 			"disk",
 			"idle_inhibitor",
 			"pulseaudio",
@@ -33,6 +34,12 @@
 				"good": 95,
 				"warning": 30
 			}
+		},
+		"custom/theme": {
+			"exec": "if [ \"$(dconf read /org/gnome/desktop/interface/color-scheme)\" = \"'prefer-dark'\" ]; then echo '{\"text\": \"󰖔\", \"class\": \"dark\"}'; else echo '{\"text\": \"󰖨\", \"class\": \"light\"}'; fi",
+			"return-type": "json",
+			"interval": 5,
+			"on-click": "~/personal/git/dotfiles/scripts/theme-switcher.sh"
 		},
 		"disk": {
 			"interval": 30,

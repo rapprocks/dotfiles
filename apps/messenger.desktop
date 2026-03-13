@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=messenger
+Name=Messenger
+Exec=sh -c "brave --app='http://messenger.com'"
+#Icon=/home/earn/.local/share/icons/fb-messenger.png
+Icon=fb-messenger
+Terminal=false
+Categories=Internet
+StartupNotify=true

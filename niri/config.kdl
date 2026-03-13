@@ -78,8 +78,8 @@ environment {
 	XDG_CURRENT_DESKTOP "niri"
 }
 
-spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
+spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+//spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/cosy-retreat.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"

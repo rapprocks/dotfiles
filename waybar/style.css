@@ -1,12 +1,13 @@
+@import "colors.css";
+
 * {
 	font-size: 12px;
-	min-height: 20px;
 	font-family: JetBrainsMono Nerd Font;
 }
 
 window#waybar {
-	background: #181818;
-	color: #ffffff;
+	background: @base;
+	color: @text;
 }
 
 #disk,
@@ -17,8 +18,10 @@ window#waybar {
 #bluetooth,
 #custom-cli,
 #custom-tailscale,
+#custom-theme,
 #idle_inhibitor {
 	padding: 0 10px;
+	color: @rose;
 }
 
 #network {
@@ -34,14 +37,13 @@ window#waybar {
 }
 
 #workspaces button {
-	color: #a6adc8;
-	background: #2a2a2a;
+	color: @subtle;
+	background: @overlay;
 	border: none;
 	border-radius: 10px;
 	padding: 0 8px;
 	margin: 5px 2px;
 	min-width: 4px;
-	min-height: 0;
 	transition: all 0.2s ease;
 }
 
@@ -51,13 +53,16 @@ window#waybar {
 }
 
 #workspaces button:hover {
-	background: #3a3a3a;
+	/*background: #3a3a3a;
 	color: #ffffff;
+	*/
+	background: @surface;
+	color: @overlay
 }
 
 #workspaces button.active {
-	background: #ebbcba;
-	color: #181818;
+	background: @rose;
+	color: @base;
 	min-width: 25px;
 	padding: 0 12px;
 }
@@ -67,15 +72,15 @@ window#waybar {
 }
 
 #bluetooth {
-	color: #3c3836;
+	color: @text;
 }
 
 #bluetooth.connected {
-	color: #ffffff;
+	color: @rose;
 }
 
 #custom-cli {
-	color: #ebbcba;
+	color: @rose;
 }
 
 #custom-tailscale.connected {
@@ -115,5 +120,5 @@ window#waybar {
 	min-height: 6px;
 	min-width: 10px;
 	border-radius: 5px;
-	background: #ebbcba;
+	background: @rose;
 }

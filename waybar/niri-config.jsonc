@@ -1,18 +1,17 @@
 [
 	{
 		"position": "top",
+		"layer": "top",
 		"height": 20,
-		"background": "#181818",
 		"modules-center": [
-			"clock",
-			"custom/screenrecording-indicator"
+			"clock"
 		],
 		"modules-left": [
 			"custom/cli",
 			"niri/workspaces"
 		],
 		"modules-right": [
-			"disk",
+			"custom/theme",
 			"idle_inhibitor",
 			"pulseaudio",
 			"pulseaudio/slider",
@@ -43,12 +42,6 @@
 				"good": 95,
 				"warning": 30
 			}
-		},
-		"disk": {
-			"interval": 30,
-			"format": "󰣳 {specific_free:0.2f}GB / {specific_total:0.2f}GB",
-			"path": "/mnt/nas/downloads/torrents",
-			"unit": "GB"
 		},
 		"bluetooth": {
 			"controller": "controller1",
@@ -83,6 +76,12 @@
 			"interval": 3,
 			"on-click": "~/.dotfiles/bin/tailscale.sh --toggle",
 			"return-type": "json"
+		},
+		"custom/theme": {
+			"exec": "/run/current-system/sw/bin/bash /home/earn/personal/git/dotfiles/scripts/theme-switcher.sh --status",
+			"return-type": "json",
+			"interval": 5,
+			"on-click": "/run/current-system/sw/bin/bash /home/earn/personal/git/dotfiles/scripts/theme-switcher.sh"
 		},
 		"idle_inhibitor": {
 			"format": "{icon}",
