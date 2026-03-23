@@ -53,3 +53,10 @@ profile docked-work {
 	output $INTERNAL disable
 	output $WORK_FLAT enable
 }
+
+profile mobb1 {
+	output "Sony SONY TV  *30 0x01010101" {
+		mode 1920x1080@60Hz
+	}
+	output $INTERNAL enable
+}

@@ -78,8 +78,12 @@ environment {
 	XDG_CURRENT_DESKTOP "niri"
 }
 
+cursor {
+	xcursor-theme "Adwaita"
+	xcursor-size 22
+}
+
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-//spawn-sh-at-startup "$HOME/personal/git/dotfiles/scripts/start-waybar.sh"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/cosy-retreat.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
@@ -87,7 +91,6 @@ spawn-at-startup "kanshi"
 
 
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
     skip-at-startup
 }
 
@@ -100,26 +103,21 @@ animations {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"Bitwarden$"# title="^Bitwarden$"
+    match app-id=r#".blueman-manager-wrapped$"# title="^Bluetooth Devices$"
+    match app-id=r#"org.pulseaudio.pavucontrol$"# title="^Volume Control$"
+
     open-floating true
 }
 
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id=r#"Bitwarden$"# title="^Bitwarden$"
 
     block-out-from "screen-capture"
 
-}
-
-/-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
 }
 
 binds {
