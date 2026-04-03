@@ -4,7 +4,7 @@ Type=Application
 Comment=chat-gpt
 Name=Chat GPT
 Exec=sh -c "brave --app='https://chatgpt.com/'"
-Icon=/home/earn/.local/share/icons/chatgpt.png
+Icon=chat-gpt
 Terminal=false
 Categories=Internet
 StartupNotify=true
