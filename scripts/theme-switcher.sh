@@ -39,6 +39,7 @@ apps=(
   "fuzzel:colors.ini:rose-pine.ini:rose-pine-dawn.ini"
 	"tmux:colors.conf:rose-pine.conf:rose-pine-dawn.conf"
 	"waybar:colors.css:rose-pine.css:rose-pine-dawn.css"
+  "mako:config:rose-pine:rose-pine-dawn"
 )
 
 for entry in "${apps[@]}"; do
@@ -47,7 +48,11 @@ for entry in "${apps[@]}"; do
   ln -sf "$DOTFILES/$app/$theme" "$CONFIG/$app/$symlink"
 done
 
+# Reload tmux
 tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null || true
+
+# Reload mako
+makoctl reload
 
 #echo "Switched to $mode mode"
 notify-send "Switched to $mode mode"

@@ -1,0 +1,18 @@
+anchor=top-right
+border-size=2
+default-timeout=3000
+font=monospace 12
+height=100
+width=300
+icons=1
+margin=15
+outer-margin=15
+padding=10
+
+background-color=#f2e9e1
+text-color=#575279
+border-color=#cecacd
+progress-color=over #286983
+
+[urgency=high]
+border-color=#b4637a
