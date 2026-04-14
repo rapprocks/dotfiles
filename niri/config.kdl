@@ -15,6 +15,7 @@ input {
         natural-scroll
         accel-speed 1.0
         accel-profile "flat"
+				click-method "clickfinger"
     }
 
     mouse {
@@ -43,13 +44,13 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        off
-        width 2
+        width 4
         active-color "#ebbcba"
         inactive-color "#45475a"
     }
 
     border {
+				off
         width 2
         active-color "#ebbcba"
         inactive-color "#45475a"
@@ -106,7 +107,7 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"Bitwarden$"# title="^Bitwarden$"
     match app-id=r#".blueman-manager-wrapped$"# title="^Bluetooth Devices$"
-    match app-id=r#"org.pulseaudio.pavucontrol$"# title="^Volume Control$"
+    //match app-id=r#"org.pulseaudio.pavucontrol$"# title="^Volume Control$"
 
     open-floating true
 }
@@ -124,9 +125,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}

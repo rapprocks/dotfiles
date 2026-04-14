@@ -1,0 +1,156 @@
+{
+	"$schema": "https://opencode.ai/theme.json",
+	"name": "Rose PAJN",
+	"defs": {
+		"rose_base": "#181818",
+		"rose_surface": "#1f1d2e",
+		"rose_overlay": "#26233a",
+		"rose_muted": "#6e6a86",
+		"rose_subtle": "#908caa",
+		"rose_text": "#e0def4",
+		"rose_love": "#eb6f92",
+		"rose_gold": "#f6c177",
+		"rose_rose": "#ebbcba",
+		"rose_pine": "#31748f",
+		"rose_foam": "#9ccfd8",
+		"rose_iris": "#c4a7e7",
+		"dawn_base": "#faf4ed",
+		"dawn_surface": "#fffaf3",
+		"dawn_overlay": "#f2e9e1",
+		"dawn_muted": "#9893a5",
+		"dawn_subtle": "#797593",
+		"dawn_text": "#575279",
+		"dawn_love": "#b4637a",
+		"dawn_gold": "#ea9d34",
+		"dawn_rose": "#d7827e",
+		"dawn_pine": "#286983",
+		"dawn_foam": "#56949f",
+		"dawn_iris": "#907aa9"
+	},
+	"theme": {
+		"primary": {
+			"dark": "rose_foam",
+			"light": "rose_pine"
+		},
+		"secondary": {
+			"dark": "rose_pine",
+			"light": "dawn_pine"
+		},
+		"accent": {
+			"dark": "rose_rose",
+			"light": "dawn_rose"
+		},
+		"error": {
+			"dark": "rose_love",
+			"light": "dawn_love"
+		},
+		"warning": {
+			"dark": "rose_gold",
+			"light": "dawn_gold"
+		},
+		"success": {
+			"dark": "rose_pine",
+			"light": "dawn_pine"
+		},
+		"info": {
+			"dark": "rose_foam",
+			"light": "dawn_foam"
+		},
+		"text": {
+			"dark": "rose_text",
+			"light": "dawn_text"
+		},
+		"textMuted": {
+			"dark": "rose_muted",
+			"light": "dawn_muted"
+		},
+		"background": {
+			"dark": "rose_base",
+			"light": "dawn_base"
+		},
+		"backgroundPanel": {
+			"dark": "rose_surface",
+			"light": "dawn_surface"
+		},
+		"backgroundElement": {
+			"dark": "rose_overlay",
+			"light": "dawn_overlay"
+		},
+		"border": {
+			"dark": "rose_muted",
+			"light": "dawn_muted"
+		},
+		"borderActive": {
+			"dark": "rose_subtle",
+			"light": "dawn_subtle"
+		},
+		"borderSubtle": {
+			"dark": "rose_overlay",
+			"light": "dawn_overlay"
+		},
+		"diffAdded": {
+			"dark": "rose_pine",
+			"light": "dawn_pine"
+		},
+		"diffRemoved": {
+			"dark": "rose_love",
+			"light": "dawn_love"
+		},
+		"markdownText": {
+			"dark": "rose_text",
+			"light": "dawn_text"
+		},
+		"markdownHeading": {
+			"dark": "rose_iris",
+			"light": "dawn_iris"
+		},
+		"markdownLink": {
+			"dark": "rose_foam",
+			"light": "rose_pine"
+		},
+		"markdownLinkText": {
+			"dark": "rose_rose",
+			"light": "dawn_rose"
+		},
+		"markdownCode": {
+			"dark": "rose_pine",
+			"light": "dawn_pine"
+		},
+		"syntaxComment": {
+			"dark": "rose_muted",
+			"light": "dawn_muted"
+		},
+		"syntaxKeyword": {
+			"dark": "rose_pine",
+			"light": "dawn_pine"
+		},
+		"syntaxFunction": {
+			"dark": "rose_foam",
+			"light": "dawn_foam"
+		},
+		"syntaxVariable": {
+			"dark": "rose_text",
+			"light": "dawn_text"
+		},
+		"syntaxString": {
+			"dark": "rose_gold",
+			"light": "dawn_gold"
+		},
+		"syntaxNumber": {
+			"dark": "rose_iris",
+			"light": "dawn_iris"
+		},
+		"syntaxType": {
+			"dark": "rose_foam",
+			"light": "dawn_foam"
+		},
+		"syntaxOperator": {
+			"dark": "rose_subtle",
+			"light": "dawn_subtle"
+		},
+		"syntaxPunctuation": {
+			"dark": "rose_subtle",
+			"light": "dawn_subtle"
+		}
+	}
+}

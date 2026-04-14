@@ -39,7 +39,7 @@ apps=(
   "fuzzel:colors.ini:rose-pine.ini:rose-pine-dawn.ini"
 	"tmux:colors.conf:rose-pine.conf:rose-pine-dawn.conf"
 	"waybar:colors.css:rose-pine.css:rose-pine-dawn.css"
-  "mako:config:rose-pine:rose-pine-dawn"
+  "mako:colors:rose-pine:rose-pine-dawn"
 )
 
 for entry in "${apps[@]}"; do
