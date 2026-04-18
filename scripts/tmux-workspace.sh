@@ -11,8 +11,10 @@ tmux has-session -t "$SESSION" 2>/dev/null && {
   exit 0
 }
 
-# Create session with first window
-tmux new-session -d -s "$SESSION" -n dotfiles -c "$DOTFILES_DIR"
+# Create session with HOME as default (affects all future windows/panes)
+tmux new-session -d -s "$SESSION" -n dotfiles -c "$HOME"
+tmux send-keys -t "$SESSION:dotfiles" "cd $DOTFILES_DIR && clear" C-m
+#tmux new-session -d -s "$SESSION" -n dotfiles -c "$DOTFILES_DIR"
 
 # Second window
 tmux new-window -t "$SESSION" -n dotconfig -c "$DOTCONFIG_DIR"
