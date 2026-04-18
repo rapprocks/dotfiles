@@ -1,0 +1,118 @@
+[
+	{
+		"position": "top",
+		"layer": "top",
+		"height": 20,
+		"modules-left": [],
+		"modules-center": [],
+		"modules-right": [
+			"network",
+			"clock"
+		],
+		"niri/workspaces": {
+			"format": "",
+			"on-click": "activate",
+			"all-outputs": true,
+			"format-icons": {
+				"active": "",
+				"default": ""
+			}
+		},
+		"battery": {
+			"format": "{icon}",
+			"format-icons": [
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"states": {
+				"critical": 15,
+				"good": 95,
+				"warning": 30
+			}
+		},
+		"bluetooth": {
+			"controller": "controller1",
+			"format": "",
+			"format-disabled": "",
+			"tooltip-format": "{controller_alias} {controller_address}",
+			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"on-click": "alacritty -e bluetui"
+		},
+		"clock": {
+			"format": "  {:%H:%M}",
+			"interval": 30,
+			"tooltip": false
+		},
+		"custom/cli": {
+			"format": ""
+		},
+		"custom/recorder": {
+			"exec": "screenrecording-indicator",
+			"on-click": "screenrecording",
+			"return-type": "json",
+			"signal": 8
+		},
+		"custom/tailscale": {
+			"exec": "~/.dotfiles/bin/tailscale.sh --status",
+			"format": "{icon}",
+			"format-icons": {
+				"connected": "󱗼",
+				"stopped": "󱗼"
+			},
+			"interval": 3,
+			"on-click": "~/.dotfiles/bin/tailscale.sh --toggle",
+			"return-type": "json"
+		},
+		"custom/theme": {
+			"exec": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh --status",
+			"return-type": "json",
+			"interval": 5,
+			"on-click": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh"
+		},
+		"idle_inhibitor": {
+			"format": "{icon}",
+			"format-icons": {
+				"activated": "",
+				"deactivated": ""
+			}
+		},
+		"network": {
+			"format": "{icon}",
+			"format-disconnected": "󰖪",
+			"format-ethernet": "",
+			"format-icons": [
+				""
+			],
+			"format-wifi": "{icon}",
+			"interval": 3,
+			"nospacing": 1,
+			"on-click": "alacritty --class=Impala -e impala",
+			"tooltip-format-disconnected": "Disconnected",
+			"tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+			"tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}"
+		},
+		"pulseaudio/slider": {
+			"min": 0,
+			"max": 100,
+			"orientation": "horizontal"
+		},
+		"pulseaudio": {
+			"format": "{icon}",
+			"format-icons": {
+				"default": [
+					"",
+					"",
+					""
+				],
+				"headphone": "",
+				"headset": ""
+			},
+			"format-muted": "",
+			"on-click": "pavucontrol"
+		}
+	}
+]

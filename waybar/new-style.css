@@ -1,0 +1,26 @@
+@import "rose-pine.css";
+
+* {
+	font-size: 13px;
+	font-weight: bold;
+	font-family: JetBrainsMono Nerd Font;
+}
+
+window#waybar {
+	background: @base;
+	color: @text;
+	padding: 0px 10px;
+}
+
+#clock,
+#network {
+	margin: 4px 10px 4px 0px;
+}
+
+#clock {
+	color: @text;
+}
+
+#network {
+	color: @muted;
+}
