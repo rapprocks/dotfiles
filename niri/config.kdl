@@ -89,7 +89,7 @@ spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/cosy-retreat.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
-
+spawn-at-startup "niriusd"
 
 hotkey-overlay {
     skip-at-startup
@@ -125,7 +125,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "alacritty"; }
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
@@ -139,6 +139,14 @@ binds {
 
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o $HOME/Pictures/screenshots/";}
 		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "screenrec";}
+
+    // Toggles the visibility of ALL windows currently in the scratchpad
+    Mod+Minus { spawn "nirius" "scratchpad-show-all"; }
+
+		// Sends the currently focused window TO the scratchpad
+		Mod+Shift+Minus { 
+			spawn "sh" "-c" "nirius scratchpad-toggle && sleep 0.1 && niri msg action set-window-floating false";
+    }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
@@ -266,13 +274,13 @@ binds {
 
     Mod+Ctrl+C { center-visible-columns; }
 
-    Mod+Minus { set-column-width "-10%"; }
+    //Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
 
-    Mod+Shift+Minus { set-window-height "-10%"; }
+    //Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    Mod+Shift+Space       { toggle-window-floating; }
+    Mod+Shift+Space { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     Mod+W { toggle-column-tabbed-display; }
