@@ -45,7 +45,8 @@ layout {
 
     focus-ring {
         width 4
-        active-color "#ebbcba"
+        //active-color "#ebbcba"
+        active-color "#31748f"
         inactive-color "#45475a"
     }
 
@@ -89,6 +90,7 @@ spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/cosy-retreat.png"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
+spawn-sh-at-startup "~/personal/git/dotfiles/scripts/cliphist-watch &"
 
 
 hotkey-overlay {
@@ -130,6 +132,8 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+
+		Mod+V { spawn-sh "~/personal/git/dotfiles/scripts/clipmenu"; }
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 

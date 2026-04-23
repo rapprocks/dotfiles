@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# 1. Get the selection from fuzzel
+chosen=$(cliphist list | fuzzel --dmenu -p 'Clipboard:' --width 50)
+
+# 2. Check if the user cancelled (pressed Esc). If chosen is empty, exit.
+[ -z "$chosen" ] && exit 0
+
+# 3. Decode and copy. 
+# We echo the chosen line and pipe it. cliphist automatically extracts the ID.
+echo "$chosen" | cliphist decode | wl-copy
+
+# Optional: Send a notification verifying the copy
+notify-send "Clipboard" "Copied to clipboard"
