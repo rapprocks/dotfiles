@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+while wl-paste -t text --watch cliphist store; do :; done
