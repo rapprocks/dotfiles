@@ -86,7 +86,7 @@ cursor {
 }
 
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/cosy-retreat.png"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/hustle.jpg"
 spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
