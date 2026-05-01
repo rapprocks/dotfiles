@@ -15,7 +15,7 @@
 	// positions generated based on config.ctl //
 	"modules-left": [
 		"custom/smallspacer",
-		"hyprland/workspaces",
+		"niri/workspaces",
 		"custom/spacer",
 		"mpris"
 	],
