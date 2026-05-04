@@ -12,12 +12,13 @@
 			"clock"
 		],
 		"niri/workspaces": {
-			"format": "",
-			"on-click": "activate",
-			"all-outputs": true,
+			"format": "{icon}",
+			"hide-empty": "true",
 			"format-icons": {
-				"active": "",
-				"default": ""
+				"default": "",
+				"active": ""
+				//"default": "○",
+				//"default": "●"
 			}
 		},
 		"battery": {

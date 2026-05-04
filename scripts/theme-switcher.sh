@@ -19,17 +19,24 @@ fi
 # Detect current mode from system theme (set by nwg-look)
 if [[ "$(dconf read $DCONF_KEY)" == "'prefer-dark'" ]]; then
   mode=light
+  color_scheme="prefer-light"
 else
   mode=dark
+  color_scheme="prefer-dark"
 fi
 
-# Toggle system theme (source of truth)
-dconf write $DCONF_KEY "'prefer-${mode}'"
-
+# 1. Update all config files first
 # Sync GTK settings.ini files
-gtk_dark=$( [[ "$mode" == "dark" ]] && echo 1 || echo 0 )
+gtk_theme="Adwaita"
+[[ "$mode" == "dark" ]] && gtk_theme="Adwaita-dark"
+
 for v in gtk-3.0 gtk-4.0; do
-  sed -i "s/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=$gtk_dark/" \
+  # HARDCODE prefer-dark to 0 so it never conflicts with Adwaita-dark
+  sed -i "s/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=0/" \
+    "$CONFIG/$v/settings.ini" 2>/dev/null || true
+    
+  # Set explicit GTK theme name
+  sed -i "s/gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
     "$CONFIG/$v/settings.ini" 2>/dev/null || true
 done
 
@@ -47,6 +54,16 @@ for entry in "${apps[@]}"; do
   [[ "$mode" == "dark" ]] && theme="$dark" || theme="$light"
   ln -sf "$DOTFILES/$app/$theme" "$CONFIG/$app/$symlink"
 done
+
+# 2. Trigger reloads and broadcast changes
+# Toggle system theme (source of truth & triggers D-Bus for Waybar/Ghostty)
+dconf write $DCONF_KEY "'$color_scheme'"
+
+# Force GTK apps (Thunar) to hot-reload their settings
+gsettings set org.gnome.desktop.interface gtk-theme "'$gtk_theme'"
+
+# Force xdg-desktop-portal-gtk to restart and apply new theme for the file chooser
+systemctl --user restart xdg-desktop-portal-gtk 2>/dev/null || true
 
 # Reload tmux
 tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null || true
