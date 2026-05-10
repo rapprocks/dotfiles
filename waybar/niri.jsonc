@@ -4,6 +4,7 @@
 		"layer": "top",
 		"height": 20,
 		"modules-left": [
+			"custom/cli",
 			"niri/workspaces"
 		],
 		"modules-center": [],
@@ -11,6 +12,9 @@
 			"network",
 			"clock"
 		],
+		"custom/cli": {
+			"format": ""
+		},
 		"niri/workspaces": {
 			"format": "{icon}",
 			"hide-empty": "true",
@@ -49,9 +53,6 @@
 			"format": "  {:%H:%M}",
 			"interval": 30,
 			"tooltip": false
-		},
-		"custom/cli": {
-			"format": ""
 		},
 		"custom/recorder": {
 			"exec": "screenrecording-indicator",

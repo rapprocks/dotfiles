@@ -1,4 +1,4 @@
-@import "rose-pine-dawn.css";
+@import "rose-pine.css";
 
 * {
 	font-size: 13px;
@@ -14,8 +14,9 @@ window#waybar {
 }
 
 #clock,
+#custom-cli,
 #network {
-	margin: 4px 10px 4px 0px;
+	margin: 4px 10px 4px 10px;
 }
 
 #clock {
