@@ -50,7 +50,7 @@
 			"on-click": "alacritty -e bluetui"
 		},
 		"clock": {
-			"format": "  {:%H:%M}",
+			"format": "<span size='6pt' rise='1500'></span> {:%H:%M}",
 			"interval": 30,
 			"tooltip": false
 		},

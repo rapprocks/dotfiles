@@ -20,7 +20,11 @@ window#waybar {
 }
 
 #clock {
-	color: @text;
+	color: @goldi;
+}
+
+#custom-cli {
+	color: @rose;
 }
 
 #network {
@@ -39,10 +43,9 @@ window#waybar {
 	padding-top: 0px;
 }
 
-
 #workspaces button {
 	background: rgba(23, 23, 23, 0.0);
-	color: #A1BDCE;
+	color: @foam;
 	box-shadow: none;
 	text-shadow: none;
 	border-radius: 9px;
@@ -52,13 +55,10 @@ window#waybar {
 	/*   animation: ws_normal 20s ease-in-out 1; */
 }
 
-
-
 #workspaces button.active {
 
-
 	/* background-image: url("/home/anik/Documents/bar1.png");*/
-	color: #A1BDCE;
+	color: @pine;
 	transition: all 0.3s ease;
 	padding-left: 4px;
 	padding-right: 4px;
