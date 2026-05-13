@@ -9,6 +9,7 @@
 		],
 		"modules-center": [],
 		"modules-right": [
+			"bluetooth",
 			"network",
 			"clock"
 		],
@@ -42,15 +43,15 @@
 		},
 		"bluetooth": {
 			"controller": "controller1",
-			"format": "",
-			"format-disabled": "",
+			"format": "<span size='8pt' rise='1000'></span> {num_connections}",
+			"format-disabled": "󰂲",
 			"tooltip-format": "{controller_alias} {controller_address}",
-			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
+			"tooltip-format-connected": "{device_alias}",
 			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 			"on-click": "alacritty -e bluetui"
 		},
 		"clock": {
-			"format": "<span size='6pt' rise='1500'></span> {:%H:%M}",
+			"format": "<span size='8pt' rise='1000'></span> {:%H:%M}",
 			"interval": 30,
 			"tooltip": false
 		},
