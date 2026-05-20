@@ -29,11 +29,15 @@ window#waybar {
 }
 
 #network {
-	color: @muted;
+	color: @iris;
 }
 
 #bluetooth {
 	color: @love;
+}
+
+#battery {
+	color: @foam;
 }
 
 #workspaces {

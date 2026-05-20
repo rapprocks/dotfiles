@@ -11,6 +11,7 @@
 		"modules-right": [
 			"bluetooth",
 			"network",
+			"battery",
 			"clock"
 		],
 		"custom/cli": {
@@ -27,14 +28,23 @@
 			}
 		},
 		"battery": {
-			"format": "{icon}",
-			"format-icons": [
-				"",
-				"",
-				"",
-				"",
-				""
-			],
+			"format": "<span size='10pt' rise='500'>{icon}</span> {capacity}%",
+			"format-icons": {
+				"default": [
+					"󰁺",
+					"󰁻",
+					"󰁼",
+					"󰁽",
+					"󰁾",
+					"󰁿",
+					"󰂀",
+					"󰂁",
+					"󰂂"
+				],
+				"charging": [
+					"󰂄"
+				]
+			},
 			"states": {
 				"critical": 15,
 				"good": 95,
@@ -43,7 +53,7 @@
 		},
 		"bluetooth": {
 			"controller": "controller1",
-			"format": "<span size='8pt' rise='1000'></span> {num_connections}",
+			"format": "<span size='10pt' rise='500'></span> {num_connections}",
 			"format-disabled": "󰂲",
 			"tooltip-format": "{controller_alias} {controller_address}",
 			"tooltip-format-connected": "{device_alias}",
@@ -51,7 +61,7 @@
 			"on-click": "alacritty -e bluetui"
 		},
 		"clock": {
-			"format": "<span size='8pt' rise='1000'></span> {:%H:%M}",
+			"format": "<span size='10pt' rise='500'></span> {:%H:%M}",
 			"interval": 30,
 			"tooltip": false
 		},
@@ -92,7 +102,7 @@
 			"format-icons": [
 				""
 			],
-			"format-wifi": "{icon}",
+			"format-wifi": "<span size='10pt' rise='500'>{icon}</span> {frequency}GHz",
 			"interval": 3,
 			"nospacing": 1,
 			"on-click": "alacritty --class=Impala -e impala",
