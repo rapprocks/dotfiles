@@ -78,6 +78,7 @@ environment {
 	QT_QPA_PLATFORM "wayland"
 	NIXOS_OZONE_WL "1"
 	XDG_CURRENT_DESKTOP "niri"
+	MOZ_ENABLE_WAYLAND "1"
 }
 
 cursor {
