@@ -124,6 +124,14 @@ window-rule {
 
 }
 
+window-rule {
+       match app-id=r#"^com\.philip\.wg-work-toggle$"#
+       open-floating true
+       default-column-width { proportion 0.45; }
+       default-window-height { fixed 320; }
+       default-floating-position x=0 y=20 relative-to="top"
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -138,7 +146,7 @@ binds {
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+		Mod+period hotkey-overlay-title="Open emoji picker" {spawn "rofimoji" "--selector" "fuzzel" "--action" "copy";}
 
     Mod+Shift+C { spawn "~/personal/git/dotfiles/scripts/reload-desktop.sh"; }
 
@@ -264,7 +272,7 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
 
     Mod+Comma  { consume-window-into-column; }
-    Mod+Period { expel-window-from-column; }
+    //Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
     Mod+Ctrl+R { reset-window-height; }

@@ -11,6 +11,7 @@
 			"niri/workspaces"
 		],
 		"modules-right": [
+			"custom/wg-work",
 			"custom/theme",
 			"idle_inhibitor",
 			"pulseaudio",
@@ -29,14 +30,23 @@
 			}
 		},
 		"battery": {
-			"format": "{icon}",
-			"format-icons": [
-				"",
-				"",
-				"",
-				"",
-				""
-			],
+			"format": "<span size='10pt' rise='500'>{icon}</span> {capacity}%",
+			"format-icons": {
+				"default": [
+					"󰁺",
+					"󰁻",
+					"󰁼",
+					"󰁽",
+					"󰁾",
+					"󰁿",
+					"󰂀",
+					"󰂁",
+					"󰂂"
+				],
+				"charging": [
+					"󰂄"
+				]
+			},
 			"states": {
 				"critical": 15,
 				"good": 95,
@@ -46,7 +56,7 @@
 		"bluetooth": {
 			"controller": "controller1",
 			"format": "",
-			"format-disabled": "",
+			"format-disabled": "<span size='10pt' rise='500'>󰂲</span>",
 			"tooltip-format": "{controller_alias} {controller_address}",
 			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
 			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -76,6 +86,15 @@
 			"interval": 3,
 			"on-click": "~/.dotfiles/bin/tailscale.sh --toggle",
 			"return-type": "json"
+		},
+		"custom/wg-work": {
+			"format": "{}",
+			"return-type": "json",
+			"exec": "/run/current-system/sw/bin/bash /home/philip/personal/git/dotfiles/scripts/wg-work-status.sh",
+			"interval": 10,
+			"signal": 8,
+			"tooltip": true,
+			"on-click": "/run/current-system/sw/bin/ghostty --class=com.philip.wg-work-toggle --title='WireGuard Work' -e /run/current-system/sw/bin/bash -lc '/home/philip/personal/git/dotfiles/scripts/wg-work-toggle.sh'"
 		},
 		"custom/theme": {
 			"exec": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh --status",

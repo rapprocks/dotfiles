@@ -41,6 +41,11 @@ profile docked-home {
   output $HOME_LG enable
 }
 
+profile docked-home-work {
+  output $INTERNAL disable
+  output $HOME_LG enable
+}
+
 profile docked-hp {
   output $INTERNAL enable position 212,1081
   output $HOME_HP enable position 0,0
