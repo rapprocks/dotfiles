@@ -94,7 +94,7 @@
 			"interval": 10,
 			"signal": 8,
 			"tooltip": true,
-			"on-click": "/run/current-system/sw/bin/ghostty --class=com.philip.wg-work-toggle --title='WireGuard Work' -e /run/current-system/sw/bin/bash -lc '/home/philip/personal/git/dotfiles/scripts/wg-work-toggle.sh'"
+			"on-click": "/run/current-system/sw/bin/alacritty --class=com.philip.wg-work-toggle --title='WireGuard Work' -e /run/current-system/sw/bin/bash -lc '/home/philip/personal/git/dotfiles/scripts/wg-work-toggle.sh'"
 		},
 		"custom/theme": {
 			"exec": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh --status",
