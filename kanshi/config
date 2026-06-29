@@ -37,7 +37,7 @@ profile apollo {
 }
 
 profile docked-home {
-  output $INTERNAL enable
+  output $INTERNAL disable
   output $HOME_LG enable
 }
 
