@@ -147,7 +147,7 @@ binds {
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
 		Mod+period hotkey-overlay-title="Open emoji picker" {spawn "rofimoji" "--selector" "fuzzel" "--action" "copy";}
-		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy";}
+		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--prompt" "pw: " "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy";}
 
     Mod+Shift+C { spawn "~/personal/git/dotfiles/scripts/reload-desktop.sh"; }
 
@@ -250,15 +250,15 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
+//    Mod+1 { focus-workspace 1; }
+//    Mod+2 { focus-workspace 2; }
+//    Mod+3 { focus-workspace 3; }
+//    Mod+4 { focus-workspace 4; }
+//    Mod+5 { focus-workspace 5; }
+//    Mod+6 { focus-workspace 6; }
+//    Mod+7 { focus-workspace 7; }
+//    Mod+8 { focus-workspace 8; }
+//    Mod+9 { focus-workspace 9; }
     Mod+Shift+1 { move-column-to-workspace 1; }
     Mod+Shift+2 { move-column-to-workspace 2; }
     Mod+Shift+3 { move-column-to-workspace 3; }
