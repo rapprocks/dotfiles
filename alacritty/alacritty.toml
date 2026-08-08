@@ -34,5 +34,5 @@ save_to_clipboard = true
 bindings = [ { key = "Return", mods = "Shift", chars = "\n" } ]
 
 [window.padding]
-x = 8
-y = 8
+x = 10
+y = 10

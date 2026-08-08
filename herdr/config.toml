@@ -1,0 +1,36 @@
+[keys]
+
+# Rebind tmux prefix from C-b -> C-a
+prefix = "ctrl+a"
+
+# Same as: bind a send-prefix
+# (Herdr already keeps prefix behavior internally; no equivalent needed)
+
+# Reload config: tmux "bind r source-file ~/.config/tmux/tmux.conf"
+reload_config = "prefix+r"
+
+# Vim-like pane navigation
+focus_pane_up = "prefix+k"
+focus_pane_down = "prefix+j"
+focus_pane_left = "prefix+h"
+focus_pane_right = "prefix+l"
+
+split_horizontal = "prefix+quote"
+split_vertical = "prefix+percent"
+
+# Last window equivalent
+last_pane = "prefix+^"
+
+# Preserve tmux muscle memory
+next_tab = "prefix+n"
+previous_tab = "prefix+p"
+
+# Scratchpad toggle
+# See custom command below
+
+[theme]
+name = "rose-pine-dawn"
+auto_switch = false
+
+[ui]
+show_agent_labels_on_pane_borders = true
