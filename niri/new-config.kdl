@@ -81,15 +81,15 @@ environment {
 }
 
 cursor {
-	xcursor-theme "Adwaita"
+	xcursor-theme "breeze_cursors"
 	xcursor-size 22
 }
 
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/hustle.jpg"
 spawn-at-startup "swayosd-server"
-//spawn-at-startup "kanshi"
-//spawn-at-startup "niriusd"
+spawn-at-startup "kanshi"
+spawn-at-startup "kded6"
 spawn-sh-at-startup "~/dotfiles/scripts/cliphist-watch &"
 
 hotkey-overlay {
@@ -130,13 +130,15 @@ binds {
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: Swaylock" { spawn "swaylock" "-C" "/home/earn/.dotfiles/swaylock/rose-pine" "--clock"; }
 
 		Mod+V { spawn-sh "~/dotfiles/scripts/clipmenu"; }
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy" "--prompt" "";}
 
     Mod+Shift+C { spawn "~/dotfiles/scripts/reload-desktop.sh"; }
 

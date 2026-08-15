@@ -9,6 +9,7 @@
 		],
 		"modules-center": [],
 		"modules-right": [
+			"idle_inhibitor",
 			"bluetooth",
 			"network",
 			"battery",
