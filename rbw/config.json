@@ -1,0 +1,12 @@
+{
+	"email": "philip.rapp@me.com",
+	"sso_id": null,
+	"base_url": "https://vault.bitwarden.com",
+	"identity_url": "https://identity.bitwarden.com",
+	"ui_url": null,
+	"notifications_url": null,
+	"lock_timeout": 3600,
+	"sync_interval": 300,
+	"pinentry": "pinentry",
+	"client_cert_path": null
+}

@@ -4,6 +4,13 @@ output "eDP-1" {
   alias $INTERNAL
 }
 
+output "DP-1" {
+	mode 3840x2160@60.00Hz
+	adaptive_sync off
+	scale 1.75
+	alias $NUC
+}
+
 output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
   mode 3840x2160@144.00Hz
 	adaptive_sync off
@@ -27,6 +34,13 @@ output "Samsung Electric Company LS32A600U H4ZT300201" {
 	mode 2560x1440@74.998
 	scale 1.20
 	alias $WORK_FLAT
+}
+
+profile nuc {
+	output "DP-1" {
+		mode 3840x2160@60.00Hz
+		scale 1.75
+	}
 }
 
 profile apollo {

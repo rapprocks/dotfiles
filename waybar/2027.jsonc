@@ -1,0 +1,52 @@
+[
+	{
+		"position": "top",
+		"layer": "top",
+		"height": 20,
+		"modules-center": [
+			"clock"
+		],
+		"modules-left": [
+			"niri/workspaces"
+		],
+		"modules-right": [
+			"custom/notification",
+			"network"
+		],
+		"niri/workspaces": {
+			"active-only": false,
+			"all-outputs": false,
+			"disable-scroll": false,
+			"display-condition": "only-populated",
+			"hide-empty": true,
+			"format": "{icon}",
+			"on-click": "activate",
+			"format-icons": {
+				"urgent": "",
+				"active": "",
+				"default": ""
+			},
+			"sort-by-number": true
+		},
+		"custom/notification": {
+			"tooltip": false,
+			"format": "<span size='10pt'>{icon}</span>",
+			"format-icons": {
+				"notification": "󱅫",
+				"none": "󰂜",
+				"dnd-notification": "󰂠",
+				"dnd-none": "󰪓",
+				"inhibited-notification": "󰂛",
+				"inhibited-none": "󰪑",
+				"dnd-inhibited-notification": "󰂛",
+				"dnd-inhibited-none": "󰪑"
+			},
+			"return-type": "json",
+			"exec-if": "which swaync-client",
+			"exec": "/run/current-system/sw/bin/swaync-client -swb",
+			"on-click": "/run/current-system/sw/bin/swaync-client -t -sw",
+			"on-click-right": "/run/current-system/sw/bin/swaync-client -d -sw",
+			"escape": true
+		}
+	}
+]
