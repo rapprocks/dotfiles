@@ -3,16 +3,24 @@
 		"position": "top",
 		"layer": "top",
 		"height": 20,
-		"modules-center": [
-			"clock"
-		],
+		"reload_style_on_change": true,
 		"modules-left": [
+			"custom/cli",
 			"niri/workspaces"
+		],
+		"modules-center": [
+			"idle_inhibitor",
+			"clock"
 		],
 		"modules-right": [
 			"custom/notification",
-			"network"
+			"bluetooth",
+			"network",
+			"battery"
 		],
+		"custom/cli": {
+			"format": "<span size='10pt'></span>"
+		},
 		"niri/workspaces": {
 			"active-only": false,
 			"all-outputs": false,
@@ -28,12 +36,74 @@
 			},
 			"sort-by-number": true
 		},
+		"battery": {
+			"interval": 30,
+			"format": "<span size='10pt'>{icon}</span>",
+			"format-charging": "<span size='10pt'>󰂄</span>",
+			"format-plugged": "<span size='10pt'>󰂄</span>",
+			"format-icons": {
+				"default": [
+					"󰁺",
+					"󰁻",
+					"󰁼",
+					"󰁽",
+					"󰁾",
+					"󰁿",
+					"󰂀",
+					"󰂁",
+					"󰂂"
+				]
+			},
+			"events": {
+				"on-discharging-warning": "/run/current-system/sw/bin/notify-send -u normal 'Low Battery'",
+				"on-discharging-critical": "/run/current-system/sw/bin/notify-send -u critical 'Very Low Battery'",
+				"on-charging-100": "/run/current-system/sw/bin/notify-send -u normal 'Battery Full!'",
+				"on-discharging": "/run/current-system/sw/bin/notify-send -u normal 'Power Switch' Discharging",
+				"on-charging": "/run/current-system/sw/bin/notify-send -u normal 'Power Switch' Charging"
+			},
+			"states": {
+				"critical": 15,
+				"good": 95,
+				"warning": 30
+			}
+		},
+		"network": {
+			"tooltip": true,
+			"format-wifi": "<span size='10pt'>{icon}</span>",
+			"format-icons": [
+				"󰤟",
+				"󰤢",
+				"󰤥"
+			],
+			"rotate": 0,
+			"format-ethernet": "󰈀 ",
+			"tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+			"format-linked": "󰈀 {ifname} (No IP)",
+			"format-disconnected": " ",
+			"tooltip-format-disconnected": "Disconnected"
+		},
+		"bluetooth": {
+			//"controller": "controller1",
+			"format": "<span size='10pt'></span>",
+			"format-disabled": "<span size='10pt'>󰂲</span>",
+			"tooltip-format": "{controller_alias} {controller_address}",
+			"tooltip-format-connected": "{controller_alias} {controller_address}\n{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"on-click": "alacritty -e bluetui"
+		},
+		"idle_inhibitor": {
+			"format": "<span size='10pt'>{icon}</span>",
+			"format-icons": {
+				"activated": "󰅶",
+				"deactivated": "󰾪"
+			}
+		},
 		"custom/notification": {
 			"tooltip": false,
 			"format": "<span size='10pt'>{icon}</span>",
 			"format-icons": {
 				"notification": "󱅫",
-				"none": "󰂜",
+				"none": "󰂚",
 				"dnd-notification": "󰂠",
 				"dnd-none": "󰪓",
 				"inhibited-notification": "󰂛",

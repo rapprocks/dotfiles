@@ -140,7 +140,7 @@ binds {
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-C" "/home/earn/.dotfiles/swaylock/rose-pine" "--clock" "--indicator-idle-visible"; }
 
 		Mod+V { spawn-sh "~/.dotfiles/scripts/clipmenu"; }
 

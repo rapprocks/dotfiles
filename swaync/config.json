@@ -32,7 +32,6 @@
 		"buttons-grid",
 		"mpris",
 		"volume",
-		"backlight",
 		"title",
 		"notifications"
 	],
@@ -55,10 +54,6 @@
 		},
 		"volume": {
 			"label": ""
-		},
-		"backlight": {
-			"label": "󰃠",
-			"device": "amdgpu_bl2"
 		},
 		"buttons-grid": {
 			"actions": [

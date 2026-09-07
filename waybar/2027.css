@@ -1,6 +1,8 @@
+@import "rose-pine.css";
+
 * {
 	border: none;
-	border-radius: 1px;
+	border-radius: 0px;
 	font-family: JetbrainsMono NFP SemiBold;
 	font-size: 10px;
 	font-style: normal;
@@ -8,7 +10,7 @@
 }
 
 window#waybar {
-	background: rgba(16, 18, 19, 0.92);
+	background: @base;
 	color: #eeeeee;
 }
 
@@ -16,9 +18,18 @@ window#waybar {
 	font-size: 12px;
 }
 
+#custom-cli,
+#custom-tailscale,
+#battery,
+#network,
+#bluetooth,
+#idle_inhibitor,
+#custom-notification {
+	padding: 0px 10px;
+}
 
 #workspaces {
-	background: rgba(16, 18, 19, 0.92);
+	background: @base;
 	margin: 0px 0px;
 	padding: 8px 5px;
 	border-radius: 16px;
