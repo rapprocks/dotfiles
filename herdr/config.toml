@@ -29,8 +29,10 @@ previous_tab = "prefix+p"
 # See custom command below
 
 [theme]
-name = "rose-pine-dawn"
-auto_switch = false
+name = "rose-pine"
+auto_switch = true
+light_name = "rose-pine-dawn"
+dark_name = "rose-pine"
 
 [ui]
 show_agent_labels_on_pane_borders = true
