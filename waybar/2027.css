@@ -23,6 +23,7 @@ window#waybar {
 #battery,
 #network,
 #bluetooth,
+#pulseaudio,
 #idle_inhibitor,
 #custom-notification {
 	padding: 0px 10px;

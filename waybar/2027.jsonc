@@ -16,16 +16,16 @@
 			"custom/notification",
 			"bluetooth",
 			"network",
+			"pulseaudio",
 			"battery"
 		],
 		"custom/cli": {
 			"format": "<span size='10pt'></span>"
 		},
 		"niri/workspaces": {
-			"active-only": false,
+			//"active-only": false,
 			"all-outputs": false,
 			"disable-scroll": false,
-			"display-condition": "only-populated",
 			"hide-empty": true,
 			"format": "{icon}",
 			"on-click": "activate",
@@ -35,6 +35,21 @@
 				"default": ""
 			},
 			"sort-by-number": true
+		},
+		"pulseaudio": {
+			"format": "{icon}",
+			"format-icons": {
+				"default": [
+					"",
+					"",
+					"",
+					""
+				],
+				"headphone": "",
+				"headset": ""
+			},
+			"format-muted": "",
+			"on-click": "pavucontrol"
 		},
 		"battery": {
 			"interval": 30,
