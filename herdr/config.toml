@@ -35,10 +35,11 @@ auto_switch = true
 light_name = "rose-pine-dawn"
 dark_name = "rose-pine"
 
-[theme.custom]
-sidebar_bg = "#181818"
-panel_bg = "#181818"
-accent = "#ebbcba"
+# Theme color overrides (commented out for automatic theme switching)
+# [theme.custom.dark]
+# sidebar_bg = "#181818"
+# panel_bg = "#181818"
+# accent = "#ebbcba"
 
 [ui]
 show_agent_labels_on_pane_borders = true

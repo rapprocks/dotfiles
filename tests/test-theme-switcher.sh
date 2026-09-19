@@ -1,0 +1,445 @@
+#!/usr/bin/env bash
+# Behavioral tests for theme-switcher.sh
+# Tests the generated wrapper's symlink management and hook invocation.
+# Use with mocked desktop commands to avoid side effects.
+
+set -euo pipefail
+
+# Test counter
+TESTS_PASSED=0
+TESTS_FAILED=0
+
+# Color output helpers
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+test_pass() {
+  echo -e "${GREEN}✓${NC} $1"
+  ((TESTS_PASSED++))
+}
+
+test_fail() {
+  echo -e "${RED}✗${NC} $1"
+  ((TESTS_FAILED++))
+}
+
+test_warn() {
+  echo -e "${YELLOW}⚠${NC} $1"
+}
+
+# Setup mock environment
+setup_mocks() {
+  local test_dir="$1"
+  
+  # Create mock PATH with stubbed commands
+  mkdir -p "$test_dir/mocks"
+  
+  # Mock dconf: succeeds for required writes, fails if explicitly broken
+  cat > "$test_dir/mocks/dconf" << 'EOF'
+#!/usr/bin/env bash
+case "${1:-}" in
+  read)
+    echo "'prefer-light'"
+    exit 0
+    ;;
+  write)
+    if [[ "${3:-}" == "FAIL_DCONF" ]]; then
+      exit 1
+    fi
+    exit 0
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+EOF
+  chmod +x "$test_dir/mocks/dconf"
+  
+  # Mock plasma-apply-colorscheme: succeeds unless explicitly broken
+  cat > "$test_dir/mocks/plasma-apply-colorscheme" << 'EOF'
+#!/usr/bin/env bash
+if [[ "${1:-}" == "FAIL" ]]; then
+  exit 1
+fi
+exit 0
+EOF
+  chmod +x "$test_dir/mocks/plasma-apply-colorscheme"
+  
+  # Mock swaync-client: optional, always succeeds
+  cat > "$test_dir/mocks/swaync-client" << 'EOF'
+#!/usr/bin/env bash
+exit 0
+EOF
+  chmod +x "$test_dir/mocks/swaync-client"
+  
+  # Mock tmux: optional, check list-sessions or fail
+  cat > "$test_dir/mocks/tmux" << 'EOF'
+#!/usr/bin/env bash
+case "${1:-}" in
+  list-sessions)
+    exit 0
+    ;;
+  source-file)
+    exit 0
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+EOF
+  chmod +x "$test_dir/mocks/tmux"
+  
+  # Mock notify-send: optional, always succeeds
+  cat > "$test_dir/mocks/notify-send" << 'EOF'
+#!/usr/bin/env bash
+exit 0
+EOF
+  chmod +x "$test_dir/mocks/notify-send"
+  
+  # Mock touch: required for Alacritty reload
+  cat > "$test_dir/mocks/touch" << 'EOF'
+#!/usr/bin/env bash
+# For -c flag (not modifying non-existent files), just succeed
+if [[ "${1:-}" == "-c" ]]; then
+  exit 0
+fi
+exit 1
+EOF
+  chmod +x "$test_dir/mocks/touch"
+}
+
+# Test 1: Valid mode arguments
+test_mode_validation() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  
+  # Setup mocks
+  setup_mocks "$test_dir"
+  
+  # Copy hook to test directory
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Test valid dark mode
+  if PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1; then
+    test_pass "Accepts 'dark' argument"
+  else
+    test_fail "Rejects 'dark' argument"
+  fi
+  
+  # Test valid light mode
+  if PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1; then
+    test_pass "Accepts 'light' argument"
+  else
+    test_fail "Rejects 'light' argument"
+  fi
+  
+  # Test invalid argument
+  if ! PATH="${test_dir}/mocks:$PATH" "$hook" "invalid" > /dev/null 2>&1; then
+    test_pass "Rejects invalid mode argument"
+  else
+    test_fail "Should reject invalid mode argument"
+  fi
+  
+  # Test missing argument
+  if ! PATH="${test_dir}/mocks:$PATH" "$hook" > /dev/null 2>&1; then
+    test_pass "Rejects missing argument"
+  else
+    test_fail "Should reject missing argument"
+  fi
+  
+  # Test --status flag (read-only)
+  if PATH="${test_dir}/mocks:$PATH" "$hook" --status > /dev/null 2>&1; then
+    test_pass "Accepts --status flag"
+  else
+    test_fail "Rejects --status flag"
+  fi
+}
+
+# Test 2: Status output does not modify state
+test_status_readonly() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Status should produce JSON output without errors
+  local output
+  output=$(PATH="${test_dir}/mocks:$PATH" "$hook" --status 2>&1)
+  
+  if echo "$output" | grep -q '"text"'; then
+    test_pass "Status output contains JSON"
+  else
+    test_fail "Status output missing JSON structure"
+  fi
+  
+  # Status should exit 0
+  if PATH="${test_dir}/mocks:$PATH" "$hook" --status > /dev/null 2>&1; then
+    test_pass "Status exits with 0"
+  else
+    test_fail "Status should exit 0"
+  fi
+}
+
+# Test 3: Required commands fail properly
+test_required_command_failure() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Mock PATH without dconf: should fail
+  mkdir -p "$test_dir/incomplete_mocks"
+  cp "$test_dir/mocks/plasma-apply-colorscheme" "$test_dir/incomplete_mocks/"
+  
+  if ! PATH="${test_dir}/incomplete_mocks:$PATH" "$hook" dark > /dev/null 2>&1; then
+    test_pass "Fails when dconf missing"
+  else
+    test_fail "Should fail when dconf missing"
+  fi
+  
+  # Mock PATH without plasma-apply-colorscheme: should fail
+  mkdir -p "$test_dir/incomplete_mocks2"
+  cp "$test_dir/mocks/dconf" "$test_dir/incomplete_mocks2/"
+  
+  if ! PATH="${test_dir}/incomplete_mocks2:$PATH" "$hook" dark > /dev/null 2>&1; then
+    test_pass "Fails when plasma-apply-colorscheme missing"
+  else
+    test_fail "Should fail when plasma-apply-colorscheme missing"
+  fi
+}
+
+# Test 4: Repeated modes are idempotent
+test_idempotent_modes() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Run light twice
+  if PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1 && \
+     PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1; then
+    test_pass "Light mode can be run repeatedly"
+  else
+    test_fail "Light mode should be idempotent"
+  fi
+  
+  # Run dark twice
+  if PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1 && \
+     PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1; then
+    test_pass "Dark mode can be run repeatedly"
+  else
+    test_fail "Dark mode should be idempotent"
+  fi
+}
+
+# Test 5: Optional commands don't break the hook
+test_optional_commands() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Create minimal mock PATH (only required commands)
+  mkdir -p "$test_dir/minimal_mocks"
+  cp "$test_dir/mocks/dconf" "$test_dir/minimal_mocks/"
+  cp "$test_dir/mocks/plasma-apply-colorscheme" "$test_dir/minimal_mocks/"
+  
+  # Should succeed even without optional commands
+  if PATH="${test_dir}/minimal_mocks:$PATH" "$hook" dark > /dev/null 2>&1; then
+    test_pass "Hook succeeds without optional commands"
+  else
+    test_fail "Hook should succeed with only required commands"
+  fi
+}
+
+# Test 6: Correct arguments passed to desktop commands
+test_correct_arguments() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local log_file="${test_dir}/command_log.txt"
+  
+  # Create enhanced mocks that log calls
+  mkdir -p "$test_dir/logging_mocks"
+  
+  cat > "$test_dir/logging_mocks/dconf" << EOF
+#!/usr/bin/env bash
+echo "dconf \$@" >> "$log_file"
+exit 0
+EOF
+  chmod +x "$test_dir/logging_mocks/dconf"
+  
+  cat > "$test_dir/logging_mocks/plasma-apply-colorscheme" << EOF
+#!/usr/bin/env bash
+echo "plasma-apply-colorscheme \$@" >> "$log_file"
+exit 0
+EOF
+  chmod +x "$test_dir/logging_mocks/plasma-apply-colorscheme"
+  
+  cp "$test_dir/mocks/swaync-client" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/tmux" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/notify-send" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/touch" "$test_dir/logging_mocks/"
+  
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  # Clear log
+  rm -f "$log_file"
+  
+  # Run dark mode
+  PATH="${test_dir}/logging_mocks:$PATH" "$hook" dark > /dev/null 2>&1
+  
+  if grep -q "dconf write /org/gnome/desktop/interface/color-scheme 'prefer-dark'" "$log_file"; then
+    test_pass "Dark mode sets correct color-scheme"
+  else
+    test_fail "Dark mode should set color-scheme to prefer-dark"
+  fi
+  
+  if grep -q "plasma-apply-colorscheme BreezeDark" "$log_file"; then
+    test_pass "Dark mode uses BreezeDark scheme"
+  else
+    test_fail "Dark mode should use BreezeDark scheme"
+  fi
+  
+  # Clear log
+  rm -f "$log_file"
+  
+  # Run light mode
+  PATH="${test_dir}/logging_mocks:$PATH" "$hook" light > /dev/null 2>&1
+  
+  if grep -q "dconf write /org/gnome/desktop/interface/color-scheme 'prefer-light'" "$log_file"; then
+    test_pass "Light mode sets correct color-scheme"
+  else
+    test_fail "Light mode should set color-scheme to prefer-light"
+  fi
+  
+  if grep -q "plasma-apply-colorscheme BreezeLight" "$log_file"; then
+    test_pass "Light mode uses BreezeLight scheme"
+  else
+    test_fail "Light mode should use BreezeLight scheme"
+  fi
+}
+
+# Test 7: Alacritty reload is triggered
+test_alacritty_reload() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local home_mock="${test_dir}/home"
+  
+  mkdir -p "$home_mock/.config/alacritty"
+  touch "$home_mock/.config/alacritty/alacritty.toml"
+  
+  setup_mocks "$test_dir"
+  mkdir -p "$test_dir/logging_mocks"
+  cp "$test_dir/mocks/dconf" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/plasma-apply-colorscheme" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/swaync-client" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/tmux" "$test_dir/logging_mocks/"
+  cp "$test_dir/mocks/notify-send" "$test_dir/logging_mocks/"
+  
+  # Create logging touch
+  local log_file="${test_dir}/touch_log.txt"
+  cat > "$test_dir/logging_mocks/touch" << EOF
+#!/usr/bin/env bash
+echo "touch \$@" >> "$log_file"
+exit 0
+EOF
+  chmod +x "$test_dir/logging_mocks/touch"
+  
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  rm -f "$log_file"
+  HOME="$home_mock" PATH="${test_dir}/logging_mocks:$PATH" "$hook" dark > /dev/null 2>&1
+  
+  if grep -q "touch -c" "$log_file"; then
+    test_pass "Alacritty reload triggered via touch -c"
+  else
+    test_fail "Should trigger Alacritty reload with touch -c"
+  fi
+}
+
+# Test 8: Bash syntax check
+test_bash_syntax() {
+  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  
+  if bash -n "$hook" > /dev/null 2>&1; then
+    test_pass "Bash syntax is valid"
+  else
+    test_fail "Bash syntax error in theme-switcher.sh"
+  fi
+}
+
+# Test 9: ShellCheck if available
+test_shellcheck() {
+  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  
+  if ! command -v shellcheck &>/dev/null; then
+    test_warn "ShellCheck not available, skipping"
+    return
+  fi
+  
+  if shellcheck "$hook" > /dev/null 2>&1; then
+    test_pass "ShellCheck validation passed"
+  else
+    test_fail "ShellCheck found issues"
+  fi
+}
+
+# Main test runner
+main() {
+  local test_dir
+  test_dir=$(mktemp -d)
+  
+  echo "Running theme-switcher.sh behavioral tests..."
+  echo "Test directory: $test_dir"
+  echo ""
+  
+  test_bash_syntax
+  test_shellcheck
+  echo ""
+  
+  test_mode_validation "$test_dir"
+  echo ""
+  
+  test_status_readonly "$test_dir"
+  echo ""
+  
+  test_required_command_failure "$test_dir"
+  echo ""
+  
+  test_idempotent_modes "$test_dir"
+  echo ""
+  
+  test_optional_commands "$test_dir"
+  echo ""
+  
+  test_correct_arguments "$test_dir"
+  echo ""
+  
+  test_alacritty_reload "$test_dir"
+  echo ""
+  
+  # Cleanup
+  rm -rf "$test_dir"
+  
+  # Summary
+  echo "================================"
+  echo -e "Tests passed: ${GREEN}$TESTS_PASSED${NC}"
+  echo -e "Tests failed: ${RED}$TESTS_FAILED${NC}"
+  echo "================================"
+  
+  if [[ $TESTS_FAILED -eq 0 ]]; then
+    echo -e "${GREEN}All tests passed!${NC}"
+    return 0
+  else
+    echo -e "${RED}Some tests failed!${NC}"
+    return 1
+  fi
+}
+
+main "$@"

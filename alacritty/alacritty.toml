@@ -21,7 +21,7 @@ family = "JetBrainsMono Nerd Font Mono"
 style = "Regular"
 
 [general]
-import = ["colors.toml"]
+import = ["~/.config/alacritty/colors.toml"]
 live_config_reload = true
 
 [selection]

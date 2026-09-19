@@ -3,12 +3,9 @@ set -euo pipefail
 
 export PATH="/run/current-system/sw/bin:$PATH"
 
-DOTFILES="$HOME/personal/git/dotfiles"
-CONFIG="$HOME/.config"
-DCONF_KEY="/org/gnome/desktop/interface/color-scheme"
-
+# Read-only status query
 if [[ "${1:-}" == "--status" ]]; then
-  if [[ "$(dconf read $DCONF_KEY)" == "'prefer-dark'" ]]; then
+  if [[ "$(dconf read /org/gnome/desktop/interface/color-scheme 2>/dev/null || echo "prefer-light")" == "'prefer-dark'" ]]; then
     echo '{"text": "󰖔", "class": "dark"}'
   else
     echo '{"text": "󰖨", "class": "light"}'
@@ -16,60 +13,89 @@ if [[ "${1:-}" == "--status" ]]; then
   exit 0
 fi
 
-# Detect current mode from system theme (set by nwg-look)
-if [[ "$(dconf read $DCONF_KEY)" == "'prefer-dark'" ]]; then
-  mode=light
-  color_scheme="prefer-light"
-else
-  mode=dark
-  color_scheme="prefer-dark"
+# Require explicit mode argument
+MODE="${1:-}"
+if [[ "$MODE" != "dark" && "$MODE" != "light" ]]; then
+  echo "Usage: theme-switcher.sh [dark|light|--status]" >&2
+  exit 1
 fi
 
-# 1. Update all config files first
-# Sync GTK settings.ini files
-gtk_theme="Adwaita"
-[[ "$mode" == "dark" ]] && gtk_theme="Adwaita-dark"
+# Determine colors for the requested mode
+case "$MODE" in
+  dark)
+    COLOR_SCHEME="prefer-dark"
+    KDE_SCHEME="BreezeDark"
+    GTK_THEME="Adwaita-dark"
+    ;;
+  light)
+    COLOR_SCHEME="prefer-light"
+    KDE_SCHEME="BreezeLight"
+    GTK_THEME="Adwaita"
+    ;;
+esac
 
-for v in gtk-3.0 gtk-4.0; do
-  # HARDCODE prefer-dark to 0 so it never conflicts with Adwaita-dark
-  sed -i "s/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=0/" \
-    "$CONFIG/$v/settings.ini" 2>/dev/null || true
-    
-  # Set explicit GTK theme name
-  sed -i "s/gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
-    "$CONFIG/$v/settings.ini" 2>/dev/null || true
-done
+echo "Applying $MODE mode desktop settings..."
 
-# app:symlink_name:dark_file:light_file
-apps=(
-  "alacritty:colors.toml:rose-pine.toml:rose-pine-dawn.toml"
-  "fuzzel:colors.ini:rose-pine.ini:rose-pine-dawn.ini"
-	"tmux:colors.conf:rose-pine.conf:rose-pine-dawn.conf"
-	"waybar:colors.css:rose-pine.css:rose-pine-dawn.css"
-  "mako:colors:rose-pine:rose-pine-dawn"
-)
+# Validate required commands are available
+if ! command -v dconf &>/dev/null; then
+  echo "Error: dconf not found in PATH" >&2
+  exit 1
+fi
 
-for entry in "${apps[@]}"; do
-  IFS=: read -r app symlink dark light <<< "$entry"
-  [[ "$mode" == "dark" ]] && theme="$dark" || theme="$light"
-  ln -sf "$DOTFILES/$app/$theme" "$CONFIG/$app/$symlink"
-done
+if ! command -v plasma-apply-colorscheme &>/dev/null; then
+  echo "Error: plasma-apply-colorscheme not found in PATH" >&2
+  exit 1
+fi
 
-# 2. Trigger reloads and broadcast changes
-# Toggle system theme (source of truth & triggers D-Bus for Waybar/Ghostty)
-dconf write $DCONF_KEY "'$color_scheme'"
+# Set GNOME/GTK color preference (required)
+if ! dconf write /org/gnome/desktop/interface/color-scheme "'$COLOR_SCHEME'"; then
+  echo "Error: Failed to write color-scheme to dconf" >&2
+  exit 1
+fi
 
-# Force GTK apps (Thunar) to hot-reload their settings
-gsettings set org.gnome.desktop.interface gtk-theme "'$gtk_theme'"
+# Set GTK theme name (for any remaining GTK apps not using color-scheme)
+if ! dconf write /org/gnome/desktop/interface/gtk-theme "'$GTK_THEME'"; then
+  echo "Error: Failed to write gtk-theme to dconf" >&2
+  exit 1
+fi
 
-# Force xdg-desktop-portal-gtk to restart and apply new theme for the file chooser
-systemctl --user restart xdg-desktop-portal-gtk 2>/dev/null || true
+# Apply KDE application color scheme (required)
+if ! plasma-apply-colorscheme "$KDE_SCHEME"; then
+  echo "Error: Failed to apply KDE color scheme" >&2
+  exit 1
+fi
 
-# Reload tmux
-tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null || true
+# Reload SwayNC CSS (optional - respects color theme changes)
+if command -v swaync-client &>/dev/null; then
+  if swaync-client --skip-wait --reload-css 2>/dev/null; then
+    echo "SwayNC CSS reloaded"
+  else
+    echo "Warning: Failed to reload SwayNC CSS" >&2
+  fi
+fi
 
-# Reload mako
-makoctl reload
+# Trigger Alacritty reload by touching the main config file (optional)
+ALACRITTY_CONFIG="$HOME/.config/alacritty/alacritty.toml"
+if [[ -f "$ALACRITTY_CONFIG" ]]; then
+  if touch -c "$ALACRITTY_CONFIG"; then
+    echo "Alacritty config reload triggered"
+  else
+    echo "Warning: Failed to trigger Alacritty reload" >&2
+  fi
+fi
 
-#echo "Switched to $mode mode"
-notify-send "Switched to $mode mode"
+# Reload tmux if running (optional)
+if command -v tmux &>/dev/null && tmux list-sessions &>/dev/null 2>&1; then
+  if tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null; then
+    echo "tmux reloaded"
+  else
+    echo "Warning: Failed to reload tmux" >&2
+  fi
+fi
+
+# Send notification (optional)
+if command -v notify-send &>/dev/null; then
+  notify-send "Switched to $MODE mode" || true
+fi
+
+exit 0
