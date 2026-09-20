@@ -1,7 +1,7 @@
-output "eDP-1" {
-  mode 1920x1200@60.03
-  scale 1.2
-  alias $INTERNAL
+output "*MND508ZB1-1*" {
+	mode 2880x1920@120.000
+	scale 2
+	alias $FW13
 }
 
 output "DP-1" {
@@ -36,47 +36,67 @@ output "Samsung Electric Company LS32A600U H4ZT300201" {
 	alias $WORK_FLAT
 }
 
-profile nuc {
-	output "DP-1" {
-		mode 3840x2160@60.00Hz
-		scale 1.75
-	}
+output "*AU Optronics*" {
+  mode 1920x1200@60.03
+  scale 1.2
+  alias $HP
 }
 
-profile apollo {
-  output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
-    mode 3840x2160@144.00Hz
-		scale 1.75
-	}
+# (Keep your other output definitions exactly as they are)
+
+# --- Built-in Profiles ---
+profile builtin-fw13 {
+  output $FW13 enable
 }
 
-profile docked-home {
-  output $INTERNAL disable
+profile builtin-hp {
+  output $HP enable
+}
+
+# --- Home LG Setup ---
+profile docked-home-fw13 {
+  output $FW13 disable
   output $HOME_LG enable
 }
 
-profile docked-home-work {
-  output $INTERNAL disable
+profile docked-home-hp {
+  output $HP disable
   output $HOME_LG enable
 }
 
-profile docked-hp {
-  output $INTERNAL enable position 212,1081
+# --- Home HP Monitor Setup ---
+profile docked-hp-fw13 {
+  output $FW13 enable position 212,1081
   output $HOME_HP enable position 0,0
 }
 
-profile builtin-display {
-  output $INTERNAL enable
+profile docked-hp-hp {
+  output $HP enable position 212,1081
+  output $HOME_HP enable position 0,0
 }
 
-profile docked-work {
-	output $INTERNAL disable
-	output $WORK_FLAT enable
+# --- Work Setup ---
+profile docked-work-fw13 {
+  output $FW13 disable
+  output $WORK_FLAT enable
 }
 
-profile mobb1 {
-	output "Sony SONY TV  *30 0x01010101" {
-		mode 1920x1080@60Hz
-	}
-	output $INTERNAL enable
+profile docked-work-hp {
+  output $HP disable
+  output $WORK_FLAT enable
+}
+
+# --- Sony TV Setup ---
+profile mobb1-fw13 {
+  output "Sony SONY TV  *30 0x01010101" {
+    mode 1920x1080@60Hz
+  }
+  output $FW13 enable
+}
+
+profile mobb1-hp {
+  output "Sony SONY TV  *30 0x01010101" {
+    mode 1920x1080@60Hz
+  }
+  output $HP enable
 }

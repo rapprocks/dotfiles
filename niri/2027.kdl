@@ -16,6 +16,7 @@ input {
         accel-speed 1.0
         accel-profile "flat"
 				click-method "clickfinger"
+				scroll-factor 1.0
     }
 
     mouse {
@@ -98,7 +99,7 @@ cursor {
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/leafy.png"
 spawn-at-startup "swayosd-server"
-spawn-at-startup "kanshi"
+//spawn-at-startup "kanshi"
 spawn-at-startup "niriusd"
 spawn-sh-at-startup "~/.dotfiles/scripts/cliphist-watch &"
 

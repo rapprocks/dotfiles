@@ -9,8 +9,7 @@
 			"niri/workspaces"
 		],
 		"modules-center": [
-			"idle_inhibitor",
-			"clock"
+			"group/center"
 		],
 		"modules-right": [
 			"custom/notification",
@@ -21,6 +20,18 @@
 		],
 		"custom/cli": {
 			"format": "<span size='10pt'></span>"
+		},
+		"group/center": {
+			"orientation": "horizontal",
+			"drawer": {
+				"transition-duration": 200,
+				"children-class": "cssstylinighere",
+				"transition-left-to-right": false
+			},
+			"modules": [
+				"clock",
+				"idle_inhibitor"
+			]
 		},
 		"niri/workspaces": {
 			//"active-only": false,
