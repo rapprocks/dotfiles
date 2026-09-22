@@ -6,7 +6,7 @@ export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
 export GPG_TTY="$(tty || true)"
 
 IFACE="wg-work"
-CONFIG="$HOME/work/wg-work.conf"
+CONFIG="$HOME/wg-work.conf"
 
 echo "WireGuard toggle: $IFACE"
 echo

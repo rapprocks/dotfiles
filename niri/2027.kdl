@@ -99,7 +99,6 @@ cursor {
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/leafy.png"
 spawn-at-startup "swayosd-server"
-//spawn-at-startup "kanshi"
 spawn-at-startup "niriusd"
 spawn-sh-at-startup "~/.dotfiles/scripts/cliphist-watch &"
 
@@ -133,6 +132,13 @@ window-rule {
 
 }
 
+window-rule {
+       match app-id=r#"^com\.earn\.bluetui$"#
+       open-floating true
+       default-column-width { proportion 0.45; }
+       default-window-height { proportion 0.45; }
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -141,7 +147,8 @@ binds {
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-C" "/home/earn/.dotfiles/swaylock/rose-pine" "--clock" "--indicator-idle-visible"; }
+    //Super+Shift+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-C" "/home/earn/.dotfiles/swaylock/rose-pine" "--clock" "--indicator-idle-visible"; }
+    Super+Shift+Escape hotkey-overlay-title="Lock the Screen: Hyprlock" { spawn "hyprlock"; }
 
 		Mod+V { spawn-sh "~/.dotfiles/scripts/clipmenu"; }
 
@@ -174,8 +181,8 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "swayosd-client" "--brightness" "+10"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-10"; }
 
     Mod+O repeat=false { toggle-overview; }
 

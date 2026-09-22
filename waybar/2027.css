@@ -11,7 +11,7 @@
 
 window#waybar {
 	background: @base;
-	color: #eeeeee;
+	color: @text;
 }
 
 #clock {
@@ -27,6 +27,27 @@ window#waybar {
 #idle_inhibitor,
 #custom-notification {
 	padding: 0px 10px;
+}
+
+/* Style the main tooltip container */
+tooltip {
+	background: @base;
+	border: 2px solid #E2BDCE;
+	border-radius: 0px;
+	padding: 12px;
+	margin: 2px 4px;
+}
+
+/* Tooltip text styling */
+tooltip label {
+	color: #E2E4F0;
+	font-size: 13px;
+	padding: 4px;
+}
+
+/* Specific styling target for clock module tooltips if needed */
+#clock label {
+	color: #E2E4F0;
 }
 
 #workspaces {
@@ -50,7 +71,7 @@ window#waybar {
 
 #workspaces button.active {
 	color: #1c1f24;
-	background-color: #6272a4;
+	background-color: @text;
 	border-radius: 16px;
 	min-width: 50px;
 	background-size: 400% 400%;
@@ -64,3 +85,10 @@ window#waybar {
 	min-width: 50px;
 	background-size: 400% 400%;
 }
+
+#custom-cli {
+	color: @rose;
+}
+
+
+/* TEST ZONE */
