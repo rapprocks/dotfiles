@@ -160,6 +160,8 @@ binds {
 
 		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy" "--prompt" "";}
 
+		Mod+N hotkey-overlay-title="Close all notifications" {spawn "swaync-client" "--close-all";}
+
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o $HOME/Pictures/screenshots/";}
 		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "screenrec";}
 

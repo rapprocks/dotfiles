@@ -26,15 +26,56 @@ case "$MODE" in
     COLOR_SCHEME="prefer-dark"
     KDE_SCHEME="BreezeDark"
     GTK_THEME="Adwaita-dark"
+    PREFER_DARK="1"
     ;;
   light)
     COLOR_SCHEME="prefer-light"
     KDE_SCHEME="BreezeLight"
     GTK_THEME="Adwaita"
+    PREFER_DARK="0"
     ;;
 esac
 
 echo "Applying $MODE mode desktop settings..."
+
+# Function to sync GTK settings.ini for both gtk-3.0 and gtk-4.0
+# Needed on niri: no XSETTINGS daemon bridges dconf -> GtkSettings
+sync_gtk_settings_ini() {
+  local gtk_version="$1"   # "gtk-3.0" or "gtk-4.0"
+  local prefer_dark="$2"   # "1" or "0"
+  local theme_name="$3"    # "Adwaita-dark" or "Adwaita"
+  local settings_dir="$HOME/.config/$gtk_version"
+  local settings_file="$settings_dir/settings.ini"
+
+  mkdir -p "$settings_dir" || return 1
+
+  if [[ ! -f "$settings_file" ]]; then
+    # Create minimal file from scratch
+    cat > "$settings_file" << EOF
+[Settings]
+gtk-application-prefer-dark-theme=$prefer_dark
+gtk-theme-name=$theme_name
+EOF
+    return $?
+  fi
+
+  # File exists: update in place, preserving other settings
+  if ! grep -q '^\[Settings\]' "$settings_file"; then
+    printf '[Settings]\n' >> "$settings_file"
+  fi
+
+  if grep -q '^gtk-application-prefer-dark-theme=' "$settings_file"; then
+    sed -i "s/^gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=$prefer_dark/" "$settings_file"
+  else
+    sed -i "/^\[Settings\]/a gtk-application-prefer-dark-theme=$prefer_dark" "$settings_file"
+  fi
+
+  if grep -q '^gtk-theme-name=' "$settings_file"; then
+    sed -i "s/^gtk-theme-name=.*/gtk-theme-name=$theme_name/" "$settings_file"
+  else
+    sed -i "/^\[Settings\]/a gtk-theme-name=$theme_name" "$settings_file"
+  fi
+}
 
 # Validate required commands are available
 if ! command -v dconf &>/dev/null; then
@@ -64,6 +105,16 @@ if ! plasma-apply-colorscheme "$KDE_SCHEME"; then
   echo "Error: Failed to apply KDE color scheme" >&2
   exit 1
 fi
+
+# Sync GTK settings.ini for apps that read GtkSettings directly
+# (needed under niri: no XSETTINGS daemon bridges dconf -> GtkSettings)
+for gtk_version in gtk-3.0 gtk-4.0; do
+  if sync_gtk_settings_ini "$gtk_version" "$PREFER_DARK" "$GTK_THEME"; then
+    echo "Updated $gtk_version/settings.ini"
+  else
+    echo "Warning: Failed to update $gtk_version/settings.ini" >&2
+  fi
+done
 
 # Reload SwayNC CSS (optional - respects color theme changes)
 if command -v swaync-client &>/dev/null; then

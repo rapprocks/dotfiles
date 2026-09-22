@@ -390,6 +390,139 @@ test_shellcheck() {
   fi
 }
 
+# Test 10: GTK settings.ini created from scratch (dark mode)
+test_gtk_settings_ini_created_dark() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local home_mock="${test_dir}/home_gtk_dark"
+  
+  mkdir -p "$home_mock/.config"
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1
+  
+  if [[ -f "$home_mock/.config/gtk-3.0/settings.ini" ]]; then
+    if grep -q "gtk-application-prefer-dark-theme=1" "$home_mock/.config/gtk-3.0/settings.ini" && \
+       grep -q "gtk-theme-name=Adwaita-dark" "$home_mock/.config/gtk-3.0/settings.ini"; then
+      test_pass "GTK settings.ini created in gtk-3.0 with dark values"
+    else
+      test_fail "GTK settings.ini in gtk-3.0 has incorrect values"
+    fi
+  else
+    test_fail "GTK settings.ini not created in gtk-3.0"
+  fi
+  
+  if [[ -f "$home_mock/.config/gtk-4.0/settings.ini" ]]; then
+    if grep -q "gtk-application-prefer-dark-theme=1" "$home_mock/.config/gtk-4.0/settings.ini" && \
+       grep -q "gtk-theme-name=Adwaita-dark" "$home_mock/.config/gtk-4.0/settings.ini"; then
+      test_pass "GTK settings.ini created in gtk-4.0 with dark values"
+    else
+      test_fail "GTK settings.ini in gtk-4.0 has incorrect values"
+    fi
+  else
+    test_fail "GTK settings.ini not created in gtk-4.0"
+  fi
+}
+
+# Test 11: GTK settings.ini created from scratch (light mode)
+test_gtk_settings_ini_created_light() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local home_mock="${test_dir}/home_gtk_light"
+  
+  mkdir -p "$home_mock/.config"
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1
+  
+  if [[ -f "$home_mock/.config/gtk-3.0/settings.ini" ]]; then
+    if grep -q "gtk-application-prefer-dark-theme=0" "$home_mock/.config/gtk-3.0/settings.ini" && \
+       grep -q "gtk-theme-name=Adwaita" "$home_mock/.config/gtk-3.0/settings.ini"; then
+      test_pass "GTK settings.ini created in gtk-3.0 with light values"
+    else
+      test_fail "GTK settings.ini in gtk-3.0 has incorrect values"
+    fi
+  else
+    test_fail "GTK settings.ini not created in gtk-3.0 for light mode"
+  fi
+  
+  if [[ -f "$home_mock/.config/gtk-4.0/settings.ini" ]]; then
+    if grep -q "gtk-application-prefer-dark-theme=0" "$home_mock/.config/gtk-4.0/settings.ini" && \
+       grep -q "gtk-theme-name=Adwaita" "$home_mock/.config/gtk-4.0/settings.ini"; then
+      test_pass "GTK settings.ini created in gtk-4.0 with light values"
+    else
+      test_fail "GTK settings.ini in gtk-4.0 has incorrect values"
+    fi
+  else
+    test_fail "GTK settings.ini not created in gtk-4.0 for light mode"
+  fi
+}
+
+# Test 12: GTK settings.ini updates existing key without clobbering other settings
+test_gtk_settings_ini_updates_existing() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local home_mock="${test_dir}/home_gtk_update"
+  
+  mkdir -p "$home_mock/.config/gtk-3.0"
+  
+  # Pre-seed with existing config and unrelated setting
+  cat > "$home_mock/.config/gtk-3.0/settings.ini" << 'EOF'
+[Settings]
+gtk-application-prefer-dark-theme=0
+gtk-cursor-theme-name=Adwaita
+gtk-theme-name=Adwaita
+EOF
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1
+  
+  local content
+  content=$(cat "$home_mock/.config/gtk-3.0/settings.ini")
+  
+  if echo "$content" | grep -q "gtk-application-prefer-dark-theme=1" && \
+     echo "$content" | grep -q "gtk-theme-name=Adwaita-dark" && \
+     echo "$content" | grep -q "gtk-cursor-theme-name=Adwaita"; then
+    test_pass "GTK settings.ini updates existing keys while preserving unrelated settings"
+  else
+    test_fail "GTK settings.ini update clobbered or missed settings"
+  fi
+}
+
+# Test 13: GTK settings.ini appends missing key under [Settings]
+test_gtk_settings_ini_appends_missing_key() {
+  local test_dir="$1"
+  local hook="${test_dir}/theme-switcher.sh"
+  local home_mock="${test_dir}/home_gtk_append"
+  
+  mkdir -p "$home_mock/.config/gtk-3.0"
+  
+  # Pre-seed with [Settings] section but no dark-theme key
+  cat > "$home_mock/.config/gtk-3.0/settings.ini" << 'EOF'
+[Settings]
+gtk-theme-name=Adwaita
+EOF
+  
+  setup_mocks "$test_dir"
+  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  
+  HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1
+  
+  local content
+  content=$(cat "$home_mock/.config/gtk-3.0/settings.ini")
+  
+  if echo "$content" | grep -q "gtk-application-prefer-dark-theme=0" && \
+     ! (echo "$content" | grep "gtk-application-prefer-dark-theme" | wc -l | grep -qv "^1$"); then
+    test_pass "GTK settings.ini appends missing key without duplication"
+  else
+    test_fail "GTK settings.ini failed to append or duplicated key"
+  fi
+}
+
 # Main test runner
 main() {
   local test_dir
@@ -422,6 +555,18 @@ main() {
   echo ""
   
   test_alacritty_reload "$test_dir"
+  echo ""
+  
+  test_gtk_settings_ini_created_dark "$test_dir"
+  echo ""
+  
+  test_gtk_settings_ini_created_light "$test_dir"
+  echo ""
+  
+  test_gtk_settings_ini_updates_existing "$test_dir"
+  echo ""
+  
+  test_gtk_settings_ini_appends_missing_key "$test_dir"
   echo ""
   
   # Cleanup
