@@ -25,25 +25,23 @@ case "$MODE" in
   dark)
     COLOR_SCHEME="prefer-dark"
     KDE_SCHEME="BreezeDark"
-    GTK_THEME="Adwaita-dark"
-    PREFER_DARK="1"
+    GTK_THEME="Adwaita"
     ;;
   light)
     COLOR_SCHEME="prefer-light"
     KDE_SCHEME="BreezeLight"
     GTK_THEME="Adwaita"
-    PREFER_DARK="0"
     ;;
 esac
 
 echo "Applying $MODE mode desktop settings..."
 
 # Function to sync GTK settings.ini for both gtk-3.0 and gtk-4.0
+# Hardcodes gtk-application-prefer-dark-theme=0 (dark mode signaled only via gtk-theme-name)
 # Needed on niri: no XSETTINGS daemon bridges dconf -> GtkSettings
 sync_gtk_settings_ini() {
   local gtk_version="$1"   # "gtk-3.0" or "gtk-4.0"
-  local prefer_dark="$2"   # "1" or "0"
-  local theme_name="$3"    # "Adwaita-dark" or "Adwaita"
+  local theme_name="$2"    # "Adwaita-dark" or "Adwaita"
   local settings_dir="$HOME/.config/$gtk_version"
   local settings_file="$settings_dir/settings.ini"
 
@@ -53,7 +51,7 @@ sync_gtk_settings_ini() {
     # Create minimal file from scratch
     cat > "$settings_file" << EOF
 [Settings]
-gtk-application-prefer-dark-theme=$prefer_dark
+gtk-application-prefer-dark-theme=0
 gtk-theme-name=$theme_name
 EOF
     return $?
@@ -65,9 +63,9 @@ EOF
   fi
 
   if grep -q '^gtk-application-prefer-dark-theme=' "$settings_file"; then
-    sed -i "s/^gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=$prefer_dark/" "$settings_file"
+    sed -i "s/^gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=0/" "$settings_file"
   else
-    sed -i "/^\[Settings\]/a gtk-application-prefer-dark-theme=$prefer_dark" "$settings_file"
+    sed -i "/^\[Settings\]/a gtk-application-prefer-dark-theme=0" "$settings_file"
   fi
 
   if grep -q '^gtk-theme-name=' "$settings_file"; then
@@ -83,6 +81,11 @@ if ! command -v dconf &>/dev/null; then
   exit 1
 fi
 
+if ! command -v gsettings &>/dev/null; then
+  echo "Error: gsettings not found in PATH" >&2
+  exit 1
+fi
+
 if ! command -v plasma-apply-colorscheme &>/dev/null; then
   echo "Error: plasma-apply-colorscheme not found in PATH" >&2
   exit 1
@@ -94,9 +97,13 @@ if ! dconf write /org/gnome/desktop/interface/color-scheme "'$COLOR_SCHEME'"; th
   exit 1
 fi
 
+sleep 0.2
+
 # Set GTK theme name (for any remaining GTK apps not using color-scheme)
-if ! dconf write /org/gnome/desktop/interface/gtk-theme "'$GTK_THEME'"; then
-  echo "Error: Failed to write gtk-theme to dconf" >&2
+# Uses gsettings (not dconf write) so GSettings "changed" signals propagate
+# correctly to live apps (e.g. Obsidian/Electron) watching via the portal.
+if ! gsettings set org.gnome.desktop.interface gtk-theme "'$GTK_THEME'"; then
+  echo "Error: Failed to set gtk-theme via gsettings" >&2
   exit 1
 fi
 
@@ -109,7 +116,7 @@ fi
 # Sync GTK settings.ini for apps that read GtkSettings directly
 # (needed under niri: no XSETTINGS daemon bridges dconf -> GtkSettings)
 for gtk_version in gtk-3.0 gtk-4.0; do
-  if sync_gtk_settings_ini "$gtk_version" "$PREFER_DARK" "$GTK_THEME"; then
+  if sync_gtk_settings_ini "$gtk_version" "$GTK_THEME"; then
     echo "Updated $gtk_version/settings.ini"
   else
     echo "Warning: Failed to update $gtk_version/settings.ini" >&2

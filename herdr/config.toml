@@ -31,7 +31,7 @@ previous_tab = "prefix+p"
 
 [theme]
 name = "rose-pine"
-auto_switch = true
+auto_switch = false
 light_name = "rose-pine-dawn"
 dark_name = "rose-pine"
 
@@ -44,5 +44,6 @@ dark_name = "rose-pine"
 [ui]
 show_agent_labels_on_pane_borders = true
 
+status_indicators = "symbols"
 [ui.toast]
 delivery = "system"
