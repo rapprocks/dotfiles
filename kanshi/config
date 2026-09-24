@@ -42,6 +42,12 @@ output "*AU Optronics*" {
   alias $HP
 }
 
+output "SONY TV  *30" {
+	mode 3840x2160@60.000
+	scale 2
+	alias $SONY
+}
+
 # (Keep your other output definitions exactly as they are)
 
 # --- Built-in Profiles ---
@@ -96,7 +102,8 @@ profile mobb1-fw13 {
 
 profile mobb1-hp {
   output "Sony SONY TV  *30 0x01010101" {
-    mode 1920x1080@60Hz
+    mode 3840x2160@60Hz
+		scale 2
   }
-  output $HP enable
+  output $FW13 disable
 }

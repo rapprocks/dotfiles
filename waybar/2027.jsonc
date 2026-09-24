@@ -12,6 +12,7 @@
 			"group/center"
 		],
 		"modules-right": [
+			"custom/wireguard",
 			"custom/notification",
 			"bluetooth",
 			"network",
@@ -159,6 +160,14 @@
 			"on-click": "/run/current-system/sw/bin/swaync-client -t -sw",
 			"on-click-right": "/run/current-system/sw/bin/swaync-client -d -sw",
 			"escape": true
+		},
+		"custom/wireguard": {
+			"format": "{}",
+			"return-type": "json",
+			"exec": "/run/current-system/sw/bin/bash ~/.dotfiles/scripts/wg-work-status.sh --status",
+			"on-click": "/run/current-system/sw/bin/alacritty -e ~/.dotfiles/scripts/wg-work-toggle.sh",
+			"signal": 8,
+			"interval": 10
 		}
 	}
 ]

@@ -1,3 +1,27 @@
+/*
+* Variant: Rosé Pine
+* Maintainer: DankChoir
+*/
+
+@define-color base #181818;
+@define-color surface #1f1d2e;
+@define-color overlay #26233a;
+
+@define-color muted #6e6a86;
+@define-color subtle #908caa;
+@define-color text #e0def4;
+
+@define-color love #eb6f92;
+@define-color goldi #f6c177;
+@define-color rose #ebbcba;
+@define-color pine #31748f;
+@define-color foam #9ccfd8;
+@define-color iris #c4a7e7;
+
+@define-color highlightLow #21202e;
+@define-color highlightMed #403d52;
+@define-color highlightHigh #524f67;
+
 * {
 	all: unset;
 	font-family: JetbrainsMono NFP SemiBold;
@@ -10,7 +34,7 @@
 }
 
 .floating-notifications.background .notification-row .notification-background {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	background-color: #191724;
 	color: #e0def4;
 	border: 1px solid #6e6a86;
@@ -18,7 +42,7 @@
 
 .floating-notifications.background .notification-row .notification-background .notification {
 	padding: 0.5rem;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification.critical {
@@ -41,7 +65,7 @@
 }
 
 .floating-notifications.background .notification-row .notification-background .notification>*:last-child>* .notification-action {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	color: #e0def4;
 	background-color: #1f1d2e;
 	border: 1px solid #6e6a86;
@@ -58,9 +82,9 @@
 .floating-notifications.background .notification-row .notification-background .close-button {
 	margin: 0.5rem;
 	padding: 0.25rem;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	color: #e0def4;
-	background-color: #eb6f92;
+	background-color: @love;
 }
 
 .floating-notifications.background .notification-row .notification-background .close-button:hover {
@@ -72,9 +96,9 @@
 }
 
 .control-center {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	margin: 1rem;
-	background-color: #191724;
+	background-color: @base;
 	color: #e0def4;
 	padding: 1rem;
 	border: 1px solid #6e6a86;
@@ -86,7 +110,7 @@
 }
 
 .control-center .widget-title button {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	color: #e0def4;
 	background-color: #1f1d2e;
 	border: 1px solid #6e6a86;
@@ -102,7 +126,7 @@
 }
 
 .control-center .notification-row .notification-background {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	margin: 0.5rem 0;
 	background-color: #1f1d2e;
 	color: #e0def4;
@@ -111,7 +135,7 @@
 
 .control-center .notification-row .notification-background .notification {
 	padding: 0.5rem;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 }
 
 .control-center .notification-row .notification-background .notification.critical {
@@ -138,7 +162,7 @@
 }
 
 .control-center .notification-row .notification-background .notification>*:last-child>* .notification-action {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	color: #e0def4;
 	background-color: #1f1d2e;
 	border: 1px solid #6e6a86;
@@ -155,9 +179,9 @@
 .control-center .notification-row .notification-background .close-button {
 	margin: 0.5rem;
 	padding: 0.25rem;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	color: #e0def4;
-	background-color: #eb6f92;
+	background-color: @love;
 }
 
 .control-center .notification-row .notification-background .close-button:hover {
@@ -171,11 +195,11 @@
 progressbar,
 progress,
 trough {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 }
 
 .notification.critical progress {
-	background-color: #eb6f92;
+	background-color: @love;
 }
 
 .notification.low progress,
@@ -193,12 +217,12 @@ trough {
 
 .control-center-dnd {
 	margin: 1rem 0;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 }
 
 .control-center-dnd slider {
 	background: #26233a;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 }
 
 .widget-dnd {
@@ -206,7 +230,7 @@ trough {
 }
 
 .widget-dnd>switch {
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	background: #26233a;
 	border: 1px solid #6e6a86;
 }
@@ -217,6 +241,6 @@ trough {
 
 .widget-dnd>switch slider {
 	background: #6e6a86;
-	border-radius: 0.5rem;
+	border-radius: 0rem;
 	margin: 0.25rem;
 }

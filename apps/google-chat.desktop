@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Google Chat
-Exec=sh -c "brave --app='http://chat.google.com'"
-Icon=/home/philip/.local/share/icons/google-chat.png
+Exec=sh -c "brave --app='http://chat.google.com/app/home'"
+Icon=google-chat
 Terminal=false
 Categories=Internet

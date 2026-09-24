@@ -92,3 +92,31 @@ tooltip label {
 
 
 /* TEST ZONE */
+
+/* Connected state */
+#custom-wireguard.connected {
+	background-color: #a6da95;
+	/* Example connected background */
+	color: #24273a;
+	/* Optional: Inject your modified SVG icon */
+	background-image: url("/home/earn/Downloads/wireguard-active.svg");
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	padding-left: 30px;
+	/* Make room for the SVG */
+}
+
+/* Disconnected state */
+#custom-wireguard.disconnected {
+	background-color: #ed8796;
+	/* Example disconnected background */
+	color: #24273a;
+	/* Optional: Inject your modified SVG icon */
+	background-image: url("/home/earn/Downloads/wireguard-inactive.svg");
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	padding-left: 30px;
+	/* Make room for the SVG */
+}
