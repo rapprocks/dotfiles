@@ -1,0 +1,60 @@
+{
+	"modules-center": [
+		"custom/active-icon",
+		"group/center"
+	],
+	"clock": {
+		"format": "{:%H:%M}",
+		"format-alt": "  {:%A, %B %d, %Y}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 3,
+			"format": {
+				"months": "<span color='#E2E4F0'><b>{}</b></span>",
+				"days": "<span color='#A3A7C1'>{}</span>",
+				"weeks": "<span color='#A3A7C1'><b>W{}</b></span>",
+				"weekdays": "<span color='#8E94B2'><b>{}</b></span>",
+				"today": "<span color='#FFC0CB'><b><u>{}</u></b></span>"
+			}
+		}
+	},
+	// "idle_inhibitor": {
+	// 	"format": "<span size='10pt'>{icon}</span>",
+	// 	"format-icons": {
+	// 		"activated": "󰅶",
+	// 		"deactivated": "󰾪"
+	// 	}
+	// },
+	"group/center": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 200,
+			"children-class": "drawer-child",
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"clock",
+			"custom/drawer-idle-inhibitor",
+			"custom/drawer-screen-recording"
+		]
+	},
+	"custom/drawer-idle-inhibitor": {
+		"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/icon.sh drawer idle_inhibitor 󰅶",
+		"return-type": "json",
+		"signal": 8,
+		"interval": "once",
+		"format": "{text}",
+		"on-click": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/toggle-icon.sh idle_inhibitor",
+		"tooltip": false
+	},
+	"custom/active-icon": {
+		"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/active-icon.sh",
+		"return-type": "json",
+		"signal": 8,
+		"interval": "once",
+		"format": "{text}",
+		"on-click": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/toggle-icon.sh",
+		"tooltip": false
+	}
+}

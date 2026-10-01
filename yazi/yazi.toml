@@ -91,12 +91,12 @@ image_bound      = [ 10000, 10000 ]
 suppress_preload = false
 
 [plugin]
-fetchers = [
-	# Mimetype
-	{ id = "mime", url = "*/",         run = "mime.dir", prio = "high" },
-	{ id = "mime", url = "local://*",  run = "mime.local", prio = "high" },
-	{ id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
-]
+# fetchers = [
+# 	# Mimetype
+# 	{ id = "mime", url = "*/",         run = "mime.dir", prio = "high" },
+# 	{ id = "mime", url = "local://*",  run = "mime.local", prio = "high" },
+# 	{ id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
+# ]
 spotters = [
 	{ url = "*/", run = "folder" },
 	# Code

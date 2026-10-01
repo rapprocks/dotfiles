@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=X
+Exec=chromium --app=https://x.com/home --ozone-platform=wayland --class=x
+Icon=x
+Terminal=false
+Categories=Internet
+StartupNotify=true
+StartupWMClass=x

@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Feedly RSS
-Exec=brave --app=https://feedly.com --ozone-platform=wayland --class=feedly
-Icon=/home/earn/.local/share/icons/feedly.png
+Exec=chromium --app=https://feedly.com --ozone-platform=wayland --class=feedly
+Icon=feedly
 Terminal=false
 Categories=Internet
 StartupNotify=true
