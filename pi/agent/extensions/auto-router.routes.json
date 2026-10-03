@@ -1,0 +1,75 @@
+	{
+		"routes": {
+			"agentic-coder": {
+				"name": "Hybrid Cloud-Local Coder Router",
+				"reasoning": true,
+				"input": [
+					"text",
+					"image"
+				],
+				"targets": [
+					{
+						"provider": "github-copilot",
+						"authProvider": "github-copilot",
+						"modelId": "claude-3-5-sonnet",
+						"label": "L1: Claude 3.5 Sonnet (GitHub Copilot)"
+					},
+					{
+						"provider": "github-copilot",
+						"authProvider": "github-copilot",
+						"modelId": "gpt-4o",
+						"label": "L2: GPT-4o (GitHub Copilot)"
+					},
+					{
+						"provider": "ollama",
+						"modelId": "qwen3-coder:30b",
+						"apiKey": "ollama",
+						"label": "L3: Qwen3 Coder 30B (Local Radeon 890M)"
+					}
+				]
+			},
+			"local-reasoning": {
+				"name": "Local-First Offline Reasoning Router",
+				"reasoning": true,
+				"input": [
+					"text"
+				],
+				"targets": [
+					{
+						"provider": "ollama",
+						"modelId": "deepseek-r1:14b",
+						"apiKey": "ollama",
+						"label": "L1: DeepSeek R1 14B (Local)"
+					},
+					{
+						"provider": "ollama",
+						"modelId": "qwen3-coder:30b",
+						"apiKey": "ollama",
+						"label": "L2: Qwen3 Coder 30B (Local Fallback)"
+					},
+					{
+						"provider": "github-copilot",
+						"authProvider": "github-copilot",
+						"modelId": "claude-3-5-sonnet",
+						"label": "L3: Claude 3-5 Sonnet (Cloud Failover)"
+					}
+				]
+			}
+		},
+		"aliases": {
+			"swe": [
+				"auto-router/agentic-coder"
+			],
+			"plan": [
+				"auto-router/local-reasoning"
+			],
+			"copilot": [
+				"github-copilot/claude-3-5-sonnet",
+				"github-copilot/gpt-4o"
+			],
+			"local": [
+				"ollama/qwen3-coder:30b",
+				"ollama/deepseek-r1:14b"
+			]
+		}
+	}

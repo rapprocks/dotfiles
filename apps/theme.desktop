@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=Theme toggle
+Name=Theme
+Exec=/home/earn/.dotfiles/scripts/theme-switcher.sh
+Icon=theme
+Terminal=false
+Categories=Terminal
+StartupNotify=true

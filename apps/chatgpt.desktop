@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Comment=chat-gpt
 Name=Chat GPT
-Exec=sh -c "brave --app='https://chatgpt.com/'"
+Exec=sh -c "chromium --app='https://chatgpt.com/'"
 Icon=chat-gpt
 Terminal=false
 Categories=Internet

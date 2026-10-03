@@ -37,7 +37,7 @@
 	border-radius: 0rem;
 	background-color: @base;
 	color: @text;
-	border: 1px solid @muted;
+	border: 1px solid @rose;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification {
@@ -101,7 +101,7 @@
 	background-color: @base;
 	color: @text;
 	padding: 1rem;
-	border: 1px solid @muted;
+	border: 1px solid @rose;
 }
 
 .control-center .widget-title {
@@ -236,7 +236,7 @@ trough {
 }
 
 .widget-dnd>switch:checked slider {
-	background: @pine;
+	background: @rose;
 }
 
 .widget-dnd>switch slider {

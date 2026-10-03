@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-OUTPUT_DIR="$HOME/Videos/screenrecordings"
+OUTPUT_DIR="$HOME/Videos/screen-recordings"
 
 if [[ ! -d "$OUTPUT_DIR" ]]; then
   notify-send "Screen recording directory does not exist: $OUTPUT_DIR" -u critical -t 3000
   exit 1
 fi
 
-filename="$OUTPUT_DIR/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
+filename="$OUTPUT_DIR/screen-recording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
 
 toggle_indicator() {
   pkill -RTMIN+8 waybar
@@ -35,4 +35,3 @@ if screenrecording_active; then
 else
   start_screenrecording
 fi
-

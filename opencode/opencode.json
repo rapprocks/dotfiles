@@ -1,8 +1,46 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	"model": "anthropic/claude-sonnet-4-5",
-	"autoupdate": false,
-	"server": {
-		"port": 4096
+	"model": "github-copilot/claude-3-5-sonnet",
+	"provider": {
+		"ollama": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "Ollama (Local)",
+			"options": {
+				"baseURL": "http://127.0.0.1:11434/v1"
+			},
+			"models": {
+				"qwen3-coder:30b": {
+					"name": "Local Qwen3 Coder 30B",
+					"options": {
+						"num_ctx": 32768
+					}
+				},
+				"deepseek-r1:14b": {
+					"name": "Local DeepSeek R1 14B",
+					"options": {
+						"num_ctx": 32768
+					}
+				}
+			}
+		}
 	},
+	// "agent": {
+	// 	"plan": {
+	// 		"model": "ollama/deepseek-r1:14b",
+	// 		"options": {
+	// 			"thinking": false
+	// 		}
+	// 	},
+	// 	"build": {
+	// 		"model": "github-copilot/claude-3-5-sonnet"
+	// 	},
+	// 	"quick": {
+	// 		"model": "ollama/qwen3-coder:30b",
+	// 		"prompt": "You are a local coding assistant. Answer questions directly using standard file tools (read, grep, glob) when needed. Do not delegate to subagents.",
+	// 		"permission": {
+	// 			"edit": "deny",
+	// 			"bash": "ask"
+	// 		}
+	// 	}
+	// }
 }

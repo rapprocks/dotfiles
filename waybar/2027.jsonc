@@ -12,7 +12,6 @@
 			"group/center"
 		],
 		"modules-right": [
-			"custom/wireguard",
 			"custom/notification",
 			"bluetooth",
 			"network",
@@ -51,7 +50,6 @@
 			]
 		},
 		"niri/workspaces": {
-			//"active-only": false,
 			"all-outputs": false,
 			"disable-scroll": false,
 			"hide-empty": true,
@@ -132,7 +130,7 @@
 			"tooltip-format": "{controller_alias} - {controller_address}",
 			"tooltip-format-connected": "{controller_alias} - {controller_address}\n{device_enumerate}",
 			"tooltip-format-enumerate-connected": "{device_alias} - {device_address}",
-			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.bluetui --title='BlueTUI' -e /run/current-system/sw/bin/bluetui"
+			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='BlueTUI' -e /run/current-system/sw/bin/bluetui"
 		},
 		"idle_inhibitor": {
 			"format": "<span size='10pt'>{icon}</span>",
@@ -160,14 +158,6 @@
 			"on-click": "/run/current-system/sw/bin/swaync-client -t -sw",
 			"on-click-right": "/run/current-system/sw/bin/swaync-client -d -sw",
 			"escape": true
-		},
-		"custom/wireguard": {
-			"format": "{}",
-			"return-type": "json",
-			"exec": "/run/current-system/sw/bin/bash ~/.dotfiles/scripts/wg-work-status.sh --status",
-			"on-click": "/run/current-system/sw/bin/alacritty -e ~/.dotfiles/scripts/wg-work-toggle.sh",
-			"signal": 8,
-			"interval": 10
 		}
 	}
 ]

@@ -1,0 +1,23 @@
+{
+	"providers": {
+		"ollama": {
+			"baseUrl": "http://127.0.0.1:11434/v1",
+			"api": "openai-completions",
+			"apiKey": "ollama",
+			"models": [
+				{
+					"id": "qwen3-coder:30b",
+					"name": "Local Qwen3 Coder 30B",
+					"contextWindow": 32768,
+					"supportsDeveloperRole": false
+				},
+				{
+					"id": "deepseek-r1:14b",
+					"name": "Local DeepSeek R1 14B",
+					"contextWindow": 32768,
+					"supportsDeveloperRole": false
+				}
+			]
+		}
+	}
+}

@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Comment=Spotify
 Name=Spotify
-Exec=sh -c "brave --app='http://spotify.com'"
+Exec=sh -c "chromium --app='http://spotify.com'"
 Icon=spotify
 Terminal=false
 Categories=Internet

@@ -47,7 +47,6 @@ layout {
     focus-ring {
         width 2
         active-color "#ebbcba"
-        //active-color "#31748f"
         inactive-color "#9ccfd8"
     }
 
@@ -76,9 +75,6 @@ layout {
 }
 
 environment {
-	//QT_QPA_PLATFORM "wayland"
-	//NIXOS_OZONE_WL "1"
-	//XDG_CURRENT_DESKTOP "niri"
 
 	QT_QPA_PLATFORM "wayland"
   QT_QPA_PLATFORMTHEME "kde"
@@ -133,7 +129,7 @@ window-rule {
 }
 
 window-rule {
-       match app-id=r#"^com\.earn\.bluetui$"#
+       match app-id=r#"^com\.earn\.tuiFloat$"#
        open-floating true
        default-column-width { proportion 0.45; }
        default-window-height { proportion 0.45; }
@@ -159,9 +155,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "alacritty"; }
     Mod+I hotkey-overlay-title="Open a browser" { spawn "firefox"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    //Super+Shift+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-C" "/home/earn/.dotfiles/swaylock/rose-pine" "--clock" "--indicator-idle-visible"; }
+    Mod+D hotkey-overlay-title="Run an Application: Walker" { spawn "rofi" "-show"; }
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: Hyprlock" { spawn "hyprlock"; }
 
 		Mod+V { spawn-sh "~/.dotfiles/scripts/clipmenu"; }
@@ -177,7 +172,7 @@ binds {
 		Mod+N hotkey-overlay-title="Close all notifications" {spawn "swaync-client" "--close-all";}
 
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o $HOME/Pictures/screenshots/";}
-		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "screenrec";}
+		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "~/.dotfiles/scripts/screen-recording.sh";}
 
     // Toggles the visibility of ALL windows currently in the scratchpad
     Mod+Minus { spawn "nirius" "scratchpad-show-all"; }

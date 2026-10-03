@@ -1,6 +1,6 @@
 output "*MND508ZB1-1*" {
 	mode 2880x1920@120.000
-	scale 2
+	scale 1.75
 	alias $FW13
 }
 

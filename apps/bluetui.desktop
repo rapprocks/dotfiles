@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=BlueTUI
+Name=Bluetooth
+Exec=alacritty --class=com.earn.tuiFloat -e bluetui
+Icon=chat-gpt
+Terminal=false
+Categories=Terminal
+StartupNotify=true
