@@ -1,6 +1,6 @@
 {
   "quiteStartup": true,
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.2",
   "theme": "dark",
   "defaultProvider": "github-copilot",
   "defaultModel": "gpt-5.4",
