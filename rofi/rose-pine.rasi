@@ -6,13 +6,13 @@
 	fgd: #e0def4;
 	cmt: #6e6a86;
 	cya: #9ccfd8;
-	grn: #31748f;
+	grn: #403d52ff;
 	ora: #ebbcba;
 	pur: #c4a7e7;
 	red: #eb6f92;
 	yel: #f6c177;
 
-	font: "Cartograph CF 12";
+	font: "JetBrainsMono Nerd Font";
 
 	foreground: @fgd;
 	background: @bg;
@@ -30,11 +30,11 @@
 configuration {
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "";
-	drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    display-drun:               ">";
+    display-run:                ">";
+    display-filebrowser:        ">";
+    display-window:             ">";
+	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
 }
 
@@ -64,7 +64,7 @@ configuration {
 	border-color: @bordercolor;
 	spacing:      2px ;
 	scrollbar:    false;
-	padding:      2px 0px 0px ;
+	padding:      4px 2px 2px 0px;
 }
 #element {
 	border:  0;
@@ -132,17 +132,26 @@ configuration {
 #entry {
 	spacing:    0;
 	text-color: @cya;
+	placeholder: "";
 }
 #prompt {
+	enabled:		true;
+	str:				">";
 	spacing:    0;
 	text-color: @grn;
 }
 #inputbar {
-	children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+	children:   [ prompt,entry,case-indicator ];
+	spacing: 0;
+	text-color: @foreground;
+	padding: 4px 2px 4px 0px;
 }
+
+/*
 #textbox-prompt-colon {
 	expand:     false;
 	str:        ":";
 	margin:     0px 0.3em 0em 0em;
 	text-color: @grn;
 }
+*/
