@@ -93,7 +93,7 @@ cursor {
 }
 
 spawn-at-startup "dbus-update-activation-environment --systemd PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/2-dot-hands.webp"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/wallpapers/linux-nixos-dark.jpg"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "niriusd"
 spawn-sh-at-startup "~/.dotfiles/scripts/cliphist-watch &"
@@ -131,8 +131,8 @@ window-rule {
 window-rule {
        match app-id=r#"^com\.earn\.tuiFloat$"#
        open-floating true
-       default-column-width { proportion 0.45; }
-       default-window-height { proportion 0.45; }
+       default-column-width { proportion 0.6; }
+       default-window-height { proportion 0.6; }
 }
 
 window-rule {
@@ -163,7 +163,7 @@ binds {
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+    //Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     Mod+Shift+C { spawn "~/dotfiles/scripts/reload-desktop.sh"; }
 

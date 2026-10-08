@@ -35,7 +35,8 @@
 			}
 		},
 		"custom/cli": {
-			"format": "<span size='10pt'></span>"
+			"format": "<span size='10pt'></span>",
+			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='SystemTUI' -e /run/current-system/sw/bin/bash -c \"/run/current-system/sw/bin/fastfetch; read -p 'Press Enter to close...'\""
 		},
 		"group/center": {
 			"orientation": "horizontal",

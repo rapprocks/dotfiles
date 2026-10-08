@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Switch SSH
+GenericName=Switch
+Comment=Connect to LibreNMS Switches via SSH
+Exec=/home/earn/workspace/work/scripts/libre_switch_ssh.sh
+Icon=utilities-terminal
+Terminal=false
+Categories=Network;Utility;
