@@ -13,7 +13,7 @@ output "DP-1" {
 
 output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
   mode 3840x2160@144.00Hz
-	adaptive_sync off
+	adaptive_sync on
   scale 1.75
   alias $HOME_LG
 }

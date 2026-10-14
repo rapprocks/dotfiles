@@ -12,6 +12,7 @@
 			"group/center"
 		],
 		"modules-right": [
+			"custom/image",
 			"custom/notification",
 			"bluetooth",
 			"network",
@@ -159,6 +160,12 @@
 			"on-click": "/run/current-system/sw/bin/swaync-client -t -sw",
 			"on-click-right": "/run/current-system/sw/bin/swaync-client -d -sw",
 			"escape": true
+		},
+		"custom/image": {
+			"format": " ",
+			"exec": "echo WG-TEST",
+			"interval": 5,
+			"icon-size": 16
 		}
 	}
 ]

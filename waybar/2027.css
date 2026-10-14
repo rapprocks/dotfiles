@@ -93,9 +93,13 @@ tooltip label {
 
 /* TEST ZONE */
 
-#custom-test-image {
-	background-image: url("/home/earn/Downloads/wireguard.png");
-	background-position: center;
+#custom-image {
+	padding: 0px 10px;
+	min-width: 12px;
+	min-height: 12px;
+
+	background-image: url("/home/earn/Downloads/wireguard.svg");
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-position: center;
+	background-size: 12px 12px;
 }

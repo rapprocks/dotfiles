@@ -12,7 +12,7 @@
 	red: #eb6f92;
 	yel: #f6c177;
 
-	font: "JetBrainsMono Nerd Font";
+	font: "JetBrainsMono Nerd Font 12";
 
 	foreground: @fgd;
 	background: @bg;
@@ -69,6 +69,9 @@ configuration {
 #element {
 	border:  0;
 	padding: 1px ;
+}
+#element-text {
+	highlight: none;
 }
 #element.normal.normal {
 	background-color: @background;
