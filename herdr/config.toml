@@ -26,6 +26,8 @@ last_pane = "prefix+^"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
 
+goto = "prefix+s"
+
 # Scratchpad toggle
 # See custom command below
 
@@ -36,10 +38,10 @@ light_name = "rose-pine-dawn"
 dark_name = "rose-pine"
 
 # Theme color overrides (commented out for automatic theme switching)
-# [theme.custom.dark]
-# sidebar_bg = "#181818"
-# panel_bg = "#181818"
-# accent = "#ebbcba"
+[theme.custom.dark]
+sidebar_bg = "#181818"
+panel_bg = "#181818"
+accent = "#ebbcba"
 
 [ui]
 show_agent_labels_on_pane_borders = true

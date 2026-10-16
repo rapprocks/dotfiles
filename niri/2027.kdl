@@ -160,6 +160,7 @@ binds {
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: Hyprlock" { spawn "hyprlock"; }
 
 		Mod+V { spawn-sh "~/.dotfiles/scripts/clipmenu"; }
+		Mod+Shift+S { spawn-sh "~/.dotfiles/scripts/dmenu/sys"; }
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 

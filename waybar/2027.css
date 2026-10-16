@@ -25,6 +25,7 @@ window#waybar {
 #bluetooth,
 #pulseaudio,
 #idle_inhibitor,
+#custom-wg-work,
 #custom-notification {
 	padding: 0px 10px;
 }
@@ -93,13 +94,28 @@ tooltip label {
 
 /* TEST ZONE */
 
-#custom-image {
-	padding: 0px 10px;
+#custom-wg-work-old {
 	min-width: 12px;
 	min-height: 12px;
 
-	background-image: url("/home/earn/Downloads/wireguard.svg");
+	background-image: url("/home/earn/.dotfiles/waybar/icons/wireguard.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 12px 12px;
+}
+
+#custom-wg-work {
+	padding: 0px 8px;
+	margin: 0px 4px;
+	min-width: 16px;
+	min-height: 16px;
+	-gtk-icon-source: url("/home/earn/.dotfiles/waybar/icons/wireguard.svg");
+}
+
+#custom-wg-work.connected {
+	opacity: 1.0;
+}
+
+#custom-wg-work.disconnected {
+	opacity: 0.4;
 }

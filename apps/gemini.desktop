@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Gemini
+Exec=sh -c "chromium --app='http://gemini.google.com/app'"
+Icon=google-gemini
+Terminal=false
+Categories=Internet

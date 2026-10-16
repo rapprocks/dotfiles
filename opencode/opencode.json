@@ -9,6 +9,14 @@
 				"/home/earn/workspace/personal/freecad-mcp#default"
 			],
 			"enabled": true
+		},
+		"akind-design": {
+			"type": "local",
+			"command": [
+				"/run/current-system/sw/bin/node",
+				"/home/earn/workspace/testing/akind-design-mcp/src/server.ts"
+			],
+			"enabled": true
 		}
 	}
 }
