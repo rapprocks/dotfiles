@@ -104,18 +104,10 @@ tooltip label {
 	background-size: 12px 12px;
 }
 
-#custom-wg-work {
-	padding: 0px 8px;
-	margin: 0px 4px;
-	min-width: 16px;
-	min-height: 16px;
-	-gtk-icon-source: url("/home/earn/.dotfiles/waybar/icons/wireguard.svg");
-}
-
 #custom-wg-work.connected {
-	opacity: 1.0;
+	color: @text;
 }
 
 #custom-wg-work.disconnected {
-	opacity: 0.4;
+	color: @muted;
 }

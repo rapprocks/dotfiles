@@ -3,9 +3,10 @@
 	"lastChangelogVersion": "1.1.0",
 	"theme": "rosepine",
 	"defaultProvider": "github-copilot",
-	"defaultModel": "gpt-5.4",
+	"defaultModel": "gemini-4-argon",
 	"packages": [
 		"npm:pi-markdown-preview",
 		"npm:pi-agent-browser-native"
-	]
+	],
+	"steeringMode": "all"
 }

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=WireGuard Work
+GenericName=WireGuard
+Comment=Connect to WireGuard Work
+Exec=alacritty --class=com.earn.tuiFloat -e /home/earn/.dotfiles/scripts/wg-work-toggle.sh
+Icon=wireguard
+Terminal=false
+Categories=Network;Utility;

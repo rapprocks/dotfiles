@@ -4,6 +4,6 @@ Name=Switch SSH
 GenericName=Switch
 Comment=Connect to LibreNMS Switches via SSH
 Exec=/home/earn/workspace/work/scripts/libre_switch_ssh.sh
-Icon=utilities-terminal
+Icon=librenms
 Terminal=false
 Categories=Network;Utility;
