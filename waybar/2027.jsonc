@@ -5,7 +5,7 @@
 		"height": 20,
 		"reload_style_on_change": true,
 		"modules-left": [
-			"custom/cli",
+			"user",
 			"niri/workspaces"
 		],
 		"modules-center": [
@@ -38,6 +38,15 @@
 		"custom/cli": {
 			"format": "<span size='10pt'></span>",
 			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='SystemTUI' -e /run/current-system/sw/bin/bash -c \"/run/current-system/sw/bin/fastfetch; read -p 'Press Enter to close...'\""
+		},
+		"user": {
+			"format": "{user} up {work_H}:{work_M}:{work_S}",
+			"interval": 60,
+			"icon": true,
+			"avatar": "/home/earn/Pictures/avatar.jpg",
+			"height": 24,
+			"width": 24,
+			"open-on-click": true
 		},
 		"group/center": {
 			"orientation": "horizontal",
