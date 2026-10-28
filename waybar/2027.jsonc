@@ -5,7 +5,7 @@
 		"height": 20,
 		"reload_style_on_change": true,
 		"modules-left": [
-			"user",
+			"custom/user",
 			"niri/workspaces"
 		],
 		"modules-center": [
@@ -40,13 +40,22 @@
 			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='SystemTUI' -e /run/current-system/sw/bin/bash -c \"/run/current-system/sw/bin/fastfetch; read -p 'Press Enter to close...'\""
 		},
 		"user": {
-			"format": "{user} up {work_H}:{work_M}:{work_S}",
+			"format": "",
 			"interval": 60,
-			"icon": true,
-			"avatar": "/home/earn/Pictures/avatar.jpg",
-			"height": 24,
-			"width": 24,
-			"open-on-click": true
+			"open-on-click": false,
+			"tooltip": true,
+			"tooltip-format": "<big><b>{user}</b></big>\nUID"
+		},
+		"custom/user": {
+			"format": "{icon}",
+			"format-icons": {
+				"earn": "",
+				"philip": ""
+			},
+			"exec": "printf '{\"text\":\"%s\",\"alt\":\"%s\",\"tooltip\":\"<big><b>%s</b></big>\\\\nUID: %s\",\"class\":\"%s\"}\\n' \"$USER\" \"$USER\" \"$USER\" \"$(id -u)\" \"$USER\"",
+			"return-type": "json",
+			"interval": "once",
+			"tooltip": true
 		},
 		"group/center": {
 			"orientation": "horizontal",

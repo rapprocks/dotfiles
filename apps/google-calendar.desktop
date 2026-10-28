@@ -3,8 +3,8 @@ Version=1.0
 Type=Application
 Comment=Google Calendar
 Name=Google Calendar
-Exec=sh -c "brave --app='http://calendar.google.com'"
-Icon=/home/earn/.local/share/icons/google-calendar.png
+Exec=sh -c "chromium --app='http://calendar.google.com'"
+Icon=google-calendar
 Terminal=false
 Categories=Internet
 StartupNotify=true

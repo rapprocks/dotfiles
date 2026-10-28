@@ -23,6 +23,7 @@ window#waybar {
 #battery,
 #network,
 #bluetooth,
+#custom-user,
 #pulseaudio,
 #idle_inhibitor,
 #custom-wg-work,
@@ -87,7 +88,8 @@ tooltip label {
 	background-size: 400% 400%;
 }
 
-#custom-cli {
+#custom-cli,
+#custom-user {
 	color: @rose;
 }
 

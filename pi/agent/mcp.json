@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "litellm-mcp-gateway": {
+      "url": "https://litellm.akind.tech/mcp/",
+      "headers": {
+        "Authorization": "!echo Bearer $(/home/earn/.local/bin/aw ai:gateway:key -e prod -a)"
+      },
+      "description": "LiteLLM MCP gateway (Grafana, Prometheus, Loki, AWESOME platform)"
+    }
+  }
+}
