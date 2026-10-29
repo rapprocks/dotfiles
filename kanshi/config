@@ -12,9 +12,9 @@ output "DP-1" {
 }
 
 output "LG Electronics LG ULTRAGEAR+ 0x01010101" {
-  mode 3840x2160@144.00Hz
+  mode 3840x2160@143.999Hz
 	adaptive_sync on
-  scale 1.75
+  scale 1.5
   alias $HOME_LG
 }
 
@@ -60,6 +60,10 @@ profile builtin-hp {
 }
 
 # --- Home LG Setup ---
+profile apollo {
+	output $HOME_LG enable
+}
+
 profile docked-home-fw13 {
   output $FW13 enable position 305,1234
   output $HOME_LG enable position 0,0

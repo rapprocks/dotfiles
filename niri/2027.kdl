@@ -129,6 +129,12 @@ window-rule {
 }
 
 window-rule {
+		match title="Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox$"
+
+		open-floating true
+}
+
+window-rule {
        match app-id=r#"^com\.earn\.tuiFloat$"#
        open-floating true
        default-column-width { proportion 0.6; }
