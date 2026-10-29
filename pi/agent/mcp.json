@@ -5,7 +5,14 @@
       "headers": {
         "Authorization": "!echo Bearer $(/home/earn/.local/bin/aw ai:gateway:key -e prod -a)"
       },
-      "description": "LiteLLM MCP gateway (Grafana, Prometheus, Loki, AWESOME platform)"
+      "description": "LiteLLM MCP gateway (Grafana, Prometheus, Loki)"
+    },
+    "awesome": {
+      "url": "https://platform-api.akind.tech/mcp",
+      "description": "AWESOME developer platform: services and owners, topology, runtime health, builds, deploys, config, LLM usage",
+      "oauth": {
+        "clientRegistration": "cimd"
+      }
     }
   }
 }

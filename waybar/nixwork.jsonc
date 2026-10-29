@@ -1,0 +1,11 @@
+{
+	"custom/wg-work": {
+		"format": "<span size='10pt'>{text}</span>",
+		"return-type": "json",
+		"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/wg-work-status.sh",
+		"interval": 10,
+		"signal": 8,
+		"tooltip": true,
+		"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='WireGuard Work' -e /run/current-system/sw/bin/bash -lc '/home/earn/.dotfiles/scripts/wg-work-toggle.sh'"
+	}
+}

@@ -1,5 +1,8 @@
 [
 	{
+		"include": [
+			"~/.config/waybar/nixwork.jsonc"
+		],
 		"position": "top",
 		"layer": "top",
 		"height": 20,
@@ -178,15 +181,6 @@
 			"on-click": "/run/current-system/sw/bin/swaync-client -t -sw",
 			"on-click-right": "/run/current-system/sw/bin/swaync-client -d -sw",
 			"escape": true
-		},
-		"custom/wg-work": {
-			"format": "<span size='10pt'>{text}</span>",
-			"return-type": "json",
-			"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/wg-work-status.sh",
-			"interval": 10,
-			"signal": 8,
-			"tooltip": true,
-			"on-click": "/run/current-system/sw/bin/alacritty --class=com.earn.tuiFloat --title='WireGuard Work' -e /run/current-system/sw/bin/bash -lc '/home/earn/.dotfiles/scripts/wg-work-toggle.sh'"
 		}
 	}
 ]
