@@ -244,7 +244,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+o exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
 
-bindsym $mod+shift+l exec 'swaylock --image /home/philip/test-locked-bg.png'
+bindsym $mod+shift+l exec 'swaylock --image ~/test-locked-bg.png'
 
 #
 # Media keys

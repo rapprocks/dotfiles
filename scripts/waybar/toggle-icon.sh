@@ -1,4 +1,6 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
+
+export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
 
 STATE="$HOME/.cache/waybar-active-icon"
 
@@ -18,7 +20,7 @@ fi
 
 # Get Waybar's PID without requiring pgrep/pkill.
 WAYBAR_PID=$(
-    /run/current-system/sw/bin/systemctl \
+    systemctl \
         --user show \
         --property=MainPID \
         --value \

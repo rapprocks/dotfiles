@@ -9,4 +9,4 @@ outer-margin=15
 padding=10
 width=300
 
-include=/home/earn/.config/mako/colors
+include=~/.config/mako/colors

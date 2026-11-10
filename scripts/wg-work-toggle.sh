@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
 
 set -uo pipefail
 
@@ -17,12 +17,12 @@ fi
 echo "WireGuard toggle: $IFACE"
 echo
 
-if /run/current-system/sw/bin/ip link show dev "$IFACE" >/dev/null 2>&1; then
+if ip link show dev "$IFACE" >/dev/null 2>&1; then
     echo "Disconnecting..."
-    if /run/wrappers/bin/sudo /run/current-system/sw/bin/wg-quick down "$CONFIG"; then
+    if sudo wg-quick down "$CONFIG"; then
         echo
         echo "Disconnected."
-        /run/current-system/sw/bin/pkill -RTMIN+8 waybar || true
+        pkill -RTMIN+8 waybar || true
         read -rp "Press Enter to close..."
         exit 0
     else
@@ -36,16 +36,16 @@ else
     echo "Connecting..."
     echo "You may be prompted for your sudo password and YubiKey PIN."
     echo
-    if /run/wrappers/bin/sudo /run/current-system/sw/bin/wg-quick up "$CONFIG"; then
+    if sudo wg-quick up "$CONFIG"; then
         echo
         echo "Connected."
-        /run/current-system/sw/bin/pkill -RTMIN+8 waybar || true
+        pkill -RTMIN+8 waybar || true
         
 		if [[ $AUTO_SWITCH -eq 1 ]]; then
         echo "Launching LibreNMS search..."
         
         # Launch the script detached to keep it in the graphical session
-        setsid -f /home/earn/workspace/work/scripts/libre_switch_ssh.sh
+        setsid -f "$HOME/workspace/work/scripts/libre_switch_ssh.sh"
         
         # No sleep needed, terminal can close instantly
         exit 0

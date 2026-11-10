@@ -5,6 +5,9 @@
 
 set -euo pipefail
 
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HOOK_SCRIPT="$REPO_ROOT/scripts/theme-switcher.sh"
+
 # Test counter
 TESTS_PASSED=0
 TESTS_FAILED=0
@@ -136,7 +139,7 @@ test_mode_validation() {
   setup_mocks "$test_dir"
   
   # Copy hook to test directory
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   # Test valid dark mode
   if PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1; then
@@ -180,7 +183,7 @@ test_status_readonly() {
   local hook="${test_dir}/theme-switcher.sh"
   
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   # Status should produce JSON output without errors
   local output
@@ -202,7 +205,7 @@ test_status_readonly() {
 
 # Test 3: Required commands fail properly (skip mocking - validated in integration)
 test_required_command_failure() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   # Verify the script has the required command checks
   if grep -q "command -v dconf" "$hook" && \
@@ -229,7 +232,7 @@ test_idempotent_modes() {
   local hook="${test_dir}/theme-switcher.sh"
   
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   # Run light twice
   if PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1 && \
@@ -250,7 +253,7 @@ test_idempotent_modes() {
 
 # Test 5: Optional commands don't break the hook
 test_optional_commands() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   # Verify swaync-client is used optionally (within conditional check)
   if grep -q "command -v swaync-client" "$hook"; then
@@ -276,7 +279,7 @@ test_optional_commands() {
 
 # Test 6: Correct commands and arguments used
 test_correct_arguments() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   # Verify dark mode uses correct values
   if grep -q "dconf write /org/gnome/desktop/interface/color-scheme 'prefer-dark'" "$hook" || \
@@ -323,7 +326,7 @@ test_correct_arguments() {
 
 # Test 7: Alacritty reload is triggered
 test_alacritty_reload() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   # Verify the script attempts to reload Alacritty by touching its config
   if grep -q "touch -c.*alacritty.toml" "$hook"; then
@@ -335,7 +338,7 @@ test_alacritty_reload() {
 
 # Test 8: Bash syntax check
 test_bash_syntax() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   if bash -n "$hook" > /dev/null 2>&1; then
     test_pass "Bash syntax is valid"
@@ -346,7 +349,7 @@ test_bash_syntax() {
 
 # Test 9: ShellCheck if available
 test_shellcheck() {
-  local hook="/home/earn/.dotfiles/scripts/theme-switcher.sh"
+  local hook="$HOOK_SCRIPT"
   
   if ! command -v shellcheck &>/dev/null; then
     test_warn "ShellCheck not available, skipping"
@@ -368,7 +371,7 @@ test_gtk_settings_ini_created_dark() {
   
   mkdir -p "$home_mock/.config"
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1
   
@@ -403,7 +406,7 @@ test_gtk_settings_ini_created_light() {
   
   mkdir -p "$home_mock/.config"
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1
   
@@ -447,7 +450,7 @@ gtk-theme-name=Adwaita
 EOF
   
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" dark > /dev/null 2>&1
   
@@ -478,7 +481,7 @@ gtk-theme-name=Adwaita
 EOF
   
   setup_mocks "$test_dir"
-  cp ~/.dotfiles/scripts/theme-switcher.sh "$hook"
+  cp "$HOOK_SCRIPT" "$hook"
   
   HOME="$home_mock" PATH="${test_dir}/mocks:$PATH" "$hook" light > /dev/null 2>&1
   

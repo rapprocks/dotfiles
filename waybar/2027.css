@@ -100,7 +100,7 @@ tooltip label {
 	min-width: 12px;
 	min-height: 12px;
 
-	background-image: url("/home/earn/.dotfiles/waybar/icons/wireguard.svg");
+	background-image: url("icons/wireguard.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 12px 12px;

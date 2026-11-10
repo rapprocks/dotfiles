@@ -4,17 +4,18 @@
 		"freecad": {
 			"type": "local",
 			"command": [
-				"nix",
-				"run",
-				"/home/earn/workspace/personal/freecad-mcp#default"
+				"sh",
+				"-c",
+				"exec nix run \"$HOME/workspace/personal/freecad-mcp#default\""
 			],
 			"enabled": true
 		},
 		"akind-design": {
 			"type": "local",
 			"command": [
-				"/run/current-system/sw/bin/node",
-				"/home/earn/workspace/testing/akind-design-mcp/src/server.ts"
+				"sh",
+				"-c",
+				"PATH=\"/run/current-system/sw/bin:$PATH\" exec node \"$HOME/workspace/testing/akind-design-mcp/src/server.ts\""
 			],
 			"enabled": true
 		}

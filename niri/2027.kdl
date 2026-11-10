@@ -174,7 +174,7 @@ binds {
 
     //Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    Mod+Shift+C { spawn "~/dotfiles/scripts/reload-desktop.sh"; }
+    Mod+Shift+C { spawn "~/.dotfiles/scripts/reload-desktop.sh"; }
 
 		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy" "--prompt" "";}
 

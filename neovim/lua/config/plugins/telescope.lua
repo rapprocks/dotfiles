@@ -27,7 +27,7 @@ return {
 			-- Fuzzy find nvim config files
 			vim.keymap.set("n", "<space>en", function()
 				require('telescope.builtin').find_files {
-					cwd = "~/dotfiles/neovim/.config/nvim"
+					cwd = vim.fn.stdpath("config")
 				}
 			end)
 		end

@@ -84,10 +84,10 @@
 			"return-type": "json"
 		},
 		"custom/theme": {
-			"exec": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh --status",
+			"exec": "bash $HOME/.dotfiles/scripts/theme-switcher.sh --status",
 			"return-type": "json",
 			"interval": 5,
-			"on-click": "/run/current-system/sw/bin/bash ~/personal/git/dotfiles/scripts/theme-switcher.sh"
+			"on-click": "bash $HOME/.dotfiles/scripts/theme-switcher.sh"
 		},
 		"idle_inhibitor": {
 			"format": "{icon}",

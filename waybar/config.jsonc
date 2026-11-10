@@ -39,7 +39,7 @@
 			"exec": "if [ \"$(dconf read /org/gnome/desktop/interface/color-scheme)\" = \"'prefer-dark'\" ]; then echo '{\"text\": \"󰖔\", \"class\": \"dark\"}'; else echo '{\"text\": \"󰖨\", \"class\": \"light\"}'; fi",
 			"return-type": "json",
 			"interval": 5,
-			"on-click": "~/personal/git/dotfiles/scripts/theme-switcher.sh"
+			"on-click": "$HOME/.dotfiles/scripts/theme-switcher.sh"
 		},
 		"disk": {
 			"interval": 30,

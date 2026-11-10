@@ -1,9 +1,11 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
+
+export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
 
 IFACE="wg-work"
 
-if /run/current-system/sw/bin/ip link show dev "$IFACE" >/dev/null 2>&1; then
-	/run/current-system/sw/bin/ip -s -j addr show dev "$IFACE" 2>/dev/null | /run/current-system/sw/bin/jq -c '
+if ip link show dev "$IFACE" >/dev/null 2>&1; then
+	ip -s -j addr show dev "$IFACE" 2>/dev/null | jq -c '
 		def netmask($p):
 			[0,1,2,3] | map(
 				if $p >= ((. + 1) * 8) then 255

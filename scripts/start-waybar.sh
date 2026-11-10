@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG_PATH="$HOME/personal/git/dotfiles/waybar/niri-config.jsonc"
+CONFIG_PATH="$HOME/.dotfiles/waybar/niri-config.jsonc"
 
 if [ -f "$CONFIG_PATH" ]; then
     waybar -c "$CONFIG_PATH"

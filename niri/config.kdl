@@ -94,7 +94,7 @@ spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "kanshi"
 spawn-at-startup "niriusd"
-spawn-sh-at-startup "~/personal/git/dotfiles/scripts/cliphist-watch &"
+spawn-sh-at-startup "~/.dotfiles/scripts/cliphist-watch &"
 
 hotkey-overlay {
     skip-at-startup
@@ -144,14 +144,14 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Shift+Escape hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
-		Mod+V { spawn-sh "~/personal/git/dotfiles/scripts/clipmenu"; }
+		Mod+V { spawn-sh "~/.dotfiles/scripts/clipmenu"; }
 
 		Mod+t hotkey-overlay-title="Open Yazi" {spawn-sh "alacritty -e yazi";}
 
 		Mod+period hotkey-overlay-title="Open emoji picker" {spawn "rofimoji" "--selector" "fuzzel" "--action" "copy";}
 		Mod+B hotkey-overlay-title="Open Bitwarden using RBW" {spawn "rofi-rbw" "--selector" "fuzzel" "--prompt" "pw: " "--clipboarder" "wl-copy" "--typer" "wtype" "--action" "copy";}
 
-    Mod+Shift+C { spawn "~/personal/git/dotfiles/scripts/reload-desktop.sh"; }
+    Mod+Shift+C { spawn "~/.dotfiles/scripts/reload-desktop.sh"; }
 
 		Mod+Shift+P hotkey-overlay-title="Take screenshot" {spawn-sh "hyprshot -z -m region -o $HOME/Pictures/screenshots/";}
 		Mod+Shift+R hotkey-overlay-title="Record screen" {spawn "screenrec";}

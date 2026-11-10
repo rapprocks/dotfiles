@@ -40,21 +40,21 @@
 		]
 	},
 	"custom/drawer-idle-inhibitor": {
-		"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/icon.sh drawer idle_inhibitor 󰅶",
+		"exec": "bash $HOME/.dotfiles/scripts/waybar/icon.sh drawer idle_inhibitor 󰅶",
 		"return-type": "json",
 		"signal": 8,
 		"interval": "once",
 		"format": "{text}",
-		"on-click": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/toggle-icon.sh idle_inhibitor",
+		"on-click": "bash $HOME/.dotfiles/scripts/waybar/toggle-icon.sh idle_inhibitor",
 		"tooltip": false
 	},
 	"custom/active-icon": {
-		"exec": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/active-icon.sh",
+		"exec": "bash $HOME/.dotfiles/scripts/waybar/active-icon.sh",
 		"return-type": "json",
 		"signal": 8,
 		"interval": "once",
 		"format": "{text}",
-		"on-click": "/run/current-system/sw/bin/bash /home/earn/.dotfiles/scripts/waybar/toggle-icon.sh",
+		"on-click": "bash $HOME/.dotfiles/scripts/waybar/toggle-icon.sh",
 		"tooltip": false
 	}
 }
