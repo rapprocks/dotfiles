@@ -1,13 +1,14 @@
 {
-  "quiteStartup": true,
-  "lastChangelogVersion": "1.4.0",
-  "theme": "rosepine",
-  "defaultProvider": "github-copilot",
-  "defaultModel": "gemini-4-argon",
-  "packages": [
-    "npm:pi-markdown-preview",
-    "npm:pi-agent-browser-native",
-    "npm:@narumitw/pi-plan-mode"
-  ],
-  "steeringMode": "all"
+	"quiteStartup": true,
+	"lastChangelogVersion": "1.4.0",
+	"theme": "rosepine",
+	"defaultProvider": "github-copilot",
+	"defaultModel": "gemini-4-argon",
+	"packages": [
+		"npm:pi-markdown-preview",
+		"npm:pi-agent-browser-native",
+		"npm:@narumitw/pi-plan-mode"
+	],
+	"steeringMode": "all",
+	"hideThinkingBlock": true
 }

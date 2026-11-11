@@ -80,8 +80,6 @@ environment {
   QT_QPA_PLATFORMTHEME "kde"
   QT_QPA_PLATFORMTHEME_QT6 "kde"
 
-  NIXOS_OZONE_WL "1"
-
   XDG_CURRENT_DESKTOP "niri"
   KDE_SESSION_VERSION "6"
   XDG_MENU_PREFIX "plasma-"
@@ -113,7 +111,7 @@ animations {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"Bitwarden$"# title="^Bitwarden$"
-    match app-id=r#".blueman-manager-wrapped$"# title="^Bluetooth Devices$"
+    match app-id=r#"(\.blueman-manager-wrapped|blueman-manager)$"# title="^Bluetooth Devices$"
     //match app-id=r#"org.pulseaudio.pavucontrol$"# title="^Volume Control$"
 
     open-floating true

@@ -2,7 +2,6 @@
 
 set -uo pipefail
 
-export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
 export GPG_TTY="$(tty || true)"
 
 IFACE="wg-work"

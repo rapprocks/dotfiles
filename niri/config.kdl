@@ -76,7 +76,6 @@ layout {
 
 environment {
 	QT_QPA_PLATFORM "wayland"
-	NIXOS_OZONE_WL "1"
 	XDG_CURRENT_DESKTOP "niri"
 	MOZ_ENABLE_WAYLAND "1"
 	EDITOR "nvim"
@@ -111,7 +110,7 @@ animations {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"Bitwarden$"# title="^Bitwarden$"
-    match app-id=r#".blueman-manager-wrapped$"# title="^Bluetooth Devices$"
+    match app-id=r#"(\.blueman-manager-wrapped|blueman-manager)$"# title="^Bluetooth Devices$"
     //match app-id=r#"org.pulseaudio.pavucontrol$"# title="^Volume Control$"
 
     open-floating true

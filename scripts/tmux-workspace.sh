@@ -2,8 +2,7 @@
 
 SESSION="rapprocks"
 
-DOTFILES_DIR="$HOME/nixconf"
-DOTCONFIG_DIR="$HOME/.dotfiles"  # optional arg, fallback to $HOME
+DOTCONFIG_DIR="${1:-$HOME/.dotfiles}"
 
 # If session already exists, just attach
 tmux has-session -t "$SESSION" 2>/dev/null && {
@@ -11,16 +10,16 @@ tmux has-session -t "$SESSION" 2>/dev/null && {
   exit 0
 }
 
-# Create session with HOME as default (affects all future windows/panes)
-tmux new-session -d -s "$SESSION" -n dotconfig -c "$HOME"
-tmux send-keys -t "$SESSION:dotfiles" "cd $DOTFILES_DIR && clear" C-m
-#tmux new-session -d -s "$SESSION" -n dotfiles -c "$DOTFILES_DIR"
+# Create session in $HOME, with first window in dotfiles
+tmux new-session -d -s "$SESSION" -n dotfiles -c "$DOTCONFIG_DIR"
 
-# Second window
-tmux new-window -t "$SESSION" -n dotfiles -c "$DOTCONFIG_DIR"
+# Second window (nixconf if present, otherwise $HOME)
+if [[ -d "$HOME/nixconf" ]]; then
+  tmux new-window -t "$SESSION" -n nixconf -c "$HOME/nixconf"
+fi
 
 # Third window
-tmux new-window -t "$SESSION" -n rando
+tmux new-window -t "$SESSION" -n rando -c "$HOME"
 
 # Start in first window
 tmux select-window -t "$SESSION:1"

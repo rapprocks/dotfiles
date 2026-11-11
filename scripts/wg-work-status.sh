@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
 
 IFACE="wg-work"
 

@@ -15,7 +15,7 @@
 			"command": [
 				"sh",
 				"-c",
-				"PATH=\"/run/current-system/sw/bin:$PATH\" exec node \"$HOME/workspace/testing/akind-design-mcp/src/server.ts\""
+				"exec node \"$HOME/workspace/testing/akind-design-mcp/src/server.ts\""
 			],
 			"enabled": true
 		}
