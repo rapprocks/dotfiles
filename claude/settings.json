@@ -11,6 +11,14 @@
     "command": "jq -r '\"[\\(.model.display_name)] \\(.context_window.used_percentage // 0)% context\"'",
     "padding": 2
   },
+  "extraKnownMarketplaces": {
+    "egm": {
+      "source": {
+        "source": "github",
+        "repo": "google/elephant-goldfish-model"
+      }
+    }
+  },
   "spinnerTipsEnabled": false,
   "modelSettings": {
     "claude-sonnet-5": {
@@ -23,5 +31,8 @@
   "autoUpdatesChannel": "stable",
   "theme": "custom:rose-pine",
   "editorMode": "vim",
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "enabledPlugins": {
+    "egm@egm": true
+  }
 }
