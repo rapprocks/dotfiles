@@ -141,6 +141,20 @@ if [[ -f "$ALACRITTY_CONFIG" ]]; then
   fi
 fi
 
+# Make running herdr clients re-read the host terminal colors (optional).
+# herdr's theme.auto_switch infers light/dark from the terminal background,
+# and Alacritty sends no light/dark notification, so nudge clients with SIGWINCH.
+if command -v pgrep &>/dev/null && pgrep -x herdr &>/dev/null; then
+  sleep 0.3  # let Alacritty live-reload colors.toml first
+  for pid in $(pgrep -x herdr); do
+    # Signal clients only, not the "herdr server" process
+    if [[ "$(tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null)" != *" server"* ]]; then
+      kill -WINCH "$pid" 2>/dev/null || true
+    fi
+  done
+  echo "herdr clients refreshed"
+fi
+
 # Reload tmux if running (optional)
 if command -v tmux &>/dev/null && tmux list-sessions &>/dev/null 2>&1; then
   if tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null; then
