@@ -31,6 +31,9 @@ goto = "prefix+s"
 # Scratchpad toggle
 # See custom command below
 
+[remote]
+manage_ssh_config = true
+
 [theme]
 name = "rose-pine"
 # Follow Alacritty: herdr infers light/dark from the terminal background,
