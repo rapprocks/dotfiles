@@ -42,19 +42,17 @@
 			"format": "<span size='10pt'></span>",
 			"on-click": "alacritty --class=com.earn.tuiFloat --title='SystemTUI' -e bash -c \"fastfetch; read -p 'Press Enter to close...'\""
 		},
-		"user": {
-			"format": "",
-			"interval": 60,
-			"open-on-click": false,
-			"tooltip": true,
-			"tooltip-format": "<big><b>{user}</b></big>\nUID"
-		},
+		// "user": {
+		// 	"format": "",
+		// 	"interval": 60,
+		// 	"open-on-click": false,
+		// 	"tooltip": true,
+		// 	"tooltip-format": "<big><b>{user}</b></big>\nUID"
+		// },
 		"custom/user": {
-			"format": "{icon}",
-			"format-icons": {
-				"earn": "",
-				"philip": ""
-			},
+			// Avatar is drawn as a rounded CSS background (see #custom-user in 2027.css);
+			// text must be non-empty or waybar hides the module.
+			"format": " ",
 			"exec": "printf '{\"text\":\"%s\",\"alt\":\"%s\",\"tooltip\":\"<big><b>%s</b></big>\\\\nUID: %s\",\"class\":\"%s\"}\\n' \"$USER\" \"$USER\" \"$USER\" \"$(id -u)\" \"$USER\"",
 			"return-type": "json",
 			"interval": "once",

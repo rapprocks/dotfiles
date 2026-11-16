@@ -23,7 +23,6 @@ window#waybar {
 #battery,
 #network,
 #bluetooth,
-#custom-user,
 #pulseaudio,
 #idle_inhibitor,
 #custom-wg-work,
@@ -88,9 +87,33 @@ tooltip label {
 	background-size: 400% 400%;
 }
 
-#custom-cli,
-#custom-user {
+#custom-cli {
 	color: @rose;
+}
+
+/* Rounded avatar from ~/.face.png. CSS can't expand $HOME, so there is one
+   rule per user; the module sets its class to $USER. */
+#custom-user {
+	/* The label is stretched to the bar's height, so the vertical margin sets the
+	   circle's height: (bar height - 2 * margin) must equal min-width. The tiny
+	   font keeps the placeholder space from pushing the bar taller. */
+	font-size: 1px;
+	min-width: 14px;
+	min-height: 0;
+	margin: 8px 10px;
+	padding: 0;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#custom-user.earn {
+	background-image: url("/home/earn/.face.png");
+}
+
+#custom-user.philip {
+	background-image: url("/home/philip/.face.png");
 }
 
 
