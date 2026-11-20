@@ -65,7 +65,7 @@ profile apollo {
 }
 
 profile docked-home-fw13 {
-  output $FW13 enable position 305,1234
+  output $FW13 disable position 305,1234
   output $HOME_LG enable position 0,0
 }
 

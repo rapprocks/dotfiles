@@ -1,14 +1,18 @@
 {
 	"quiteStartup": true,
-	"lastChangelogVersion": "1.4.0",
+	"lastChangelogVersion": "1.5.2",
 	"theme": "rosepine",
 	"defaultProvider": "github-copilot",
-	"defaultModel": "gemini-4-argon",
+	"defaultModel": "claude-opus-5.5",
 	"packages": [
 		"npm:pi-markdown-preview",
 		"npm:pi-agent-browser-native",
 		"npm:@narumitw/pi-plan-mode"
 	],
 	"steeringMode": "all",
-	"hideThinkingBlock": true
+	"hideThinkingBlock": true,
+	"extensionChangelogVersions": {
+		"{\"source\":\"npm:pi-agent-browser-native\",\"scope\":\"user\"}": "0.9.32",
+		"{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.60.1"
+	}
 }
